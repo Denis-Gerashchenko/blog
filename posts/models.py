@@ -27,6 +27,7 @@ class Post(models.Model):
     thumbnail = models.ImageField()
     categories = models.ManyToManyField(Category)
     featured = models.BooleanField()
+    main = models.BooleanField()
 
     def __str__(self):
         return self.title
