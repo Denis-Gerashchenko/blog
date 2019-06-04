@@ -1,185 +1,115 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
-		<aside id="colorlib-breadcrumbs">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 breadcrumbs text-center">
-						<h2>Events</h2>
-						<p><span><a href="index.html">Home</a></span> / <span>Event</span></p>
-					</div>
-				</div>
-			</div>
-		</aside>
-
 		<div id="colorlib-container">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-9 content">
 						<div class="row row-pb-md">
+							{% for obj in row1 %}
 							<div class="col-md-6">
 								<div class="blog-entry">
 									<div class="blog-img">
-										<a href="blog.html"><img src="{% static 'images/blog-1.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
+										<a href="blog.html"><img src="{{ obj.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 									</div>
 									<div class="desc">
 										<p class="meta">
-											<span class="cat"><a href="#">Events</a></span>
-											<span class="date">20 March 2018</span>
-											<span class="pos">By <a href="#">Rich</a></span>
+											<span class="cat"><a href="#">{{ obj.categories }}</a></span>
+											<span class="date">{{ obj.timestamp }}</span>
+											<span class="pos">By <a href="#">{{ obj.author }}</a></span>
 										</p>
-										<h2><a href="blog.html">Recipe for your site</a></h2>
-										<p>A small river named Duden flows by their place and supplies it with the necessary </p>
+										<h2><a href="blog.html">{{ obj.title }}</a></h2>
+										<p>{{ obj.overview }}</p>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-6">
-								<div class="blog-entry">
-									<div class="blog-slider">
-										<div class="owl-carousel">
-											<div class="item">
-												<a href="blog.html" class="image-popup-link"><img src="{% static 'images/blog-3.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
-											</div>
-											<div class="item">
-												<a href="blog.html" class="image-popup-link"><img src="{% static 'images/blog-4.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
-											</div>
-										</div>
-									</div>
-									<div class="desc">
-										<p class="meta">
-											<span class="cat"><a href="#">Travel</a></span>
-											<span class="date">20 March 2018</span>
-											<span class="pos">By <a href="#">Rich</a></span>
-										</p>
-										<h2><a href="blog.html">Recipe for your site</a></h2>
-										<p>A small river named Duden flows by their place and supplies it with the necessary </p>
-									</div>
-								</div>
-							</div>
+							{% endfor %}
 						</div>
+						<!--2-->
 						<div class="row row-pb-md">
+							{% for obj in row2 %}
 							<div class="col-md-6">
 								<div class="blog-entry">
 									<div class="blog-img">
-										<a href="blog.html"><img src="{% static 'images/blog-4.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
+										<a href="blog.html"><img src="{{ obj.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 									</div>
 									<div class="desc">
 										<p class="meta">
-											<span class="cat"><a href="#">Lifestyle</a></span>
-											<span class="date">20 March 2018</span>
-											<span class="pos">By <a href="#">Rich</a></span>
+											<span class="cat"><a href="#">{{ obj.categories }}</a></span>
+											<span class="date">{{ obj.timestamp }}</span>
+											<span class="pos">By <a href="#">{{ obj.author }}</a></span>
 										</p>
-										<h2><a href="blog.html">Recipe for your site</a></h2>
-										<p>A small river named Duden flows by their place and supplies it with the necessary </p>
+										<h2><a href="blog.html">{{ obj.title }}</a></h2>
+										<p>{{ obj.overview }}</p>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-6">
-								<div class="blog-entry">
-									<div class="blog-img">
-										<a href="blog.html"><img src="{% static 'images/blog-5.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
-									</div>
-									<div class="desc">
-										<p class="meta">
-											<span class="cat"><a href="#">Events</a></span>
-											<span class="date">20 March 2018</span>
-											<span class="pos">By <a href="#">Rich</a></span>
-										</p>
-										<h2><a href="blog.html">Recipe for your site</a></h2>
-										<p>A small river named Duden flows by their place and supplies it with the necessary </p>
-									</div>
-								</div>
-							</div>
+							{% endfor %}
 						</div>
+						<!--3-->
 						<div class="row row-pb-md">
-							<div class="col-md-12">
+							{% for obj in row3 %}
+							<div class="col-md-6">
 								<div class="blog-entry">
 									<div class="blog-img">
-										<div class="video colorlib-video" style="background-image: url({% static 'images/blog-8.jpg' %});">
-											<a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo"><i class="icon-play"></i></a>
-											<div class="overlay"></div>
-										</div>
+										<a href="blog.html"><img src="{{ obj.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 									</div>
 									<div class="desc">
 										<p class="meta">
-											<span class="cat"><a href="#">Watch</a></span>
-											<span class="date">20 March 2018</span>
-											<span class="pos">By <a href="#">Rich</a></span>
+											<span class="cat"><a href="#">{{ obj.categories }}</a></span>
+											<span class="date">{{ obj.timestamp }}</span>
+											<span class="pos">By <a href="#">{{ obj.author }}</a></span>
 										</p>
-										<h2><a href="blog.html">Watch our video how to make website</a></h2>
-										<p>A small river named Duden flows by their place and supplies it with the necessary </p>
+										<h2><a href="blog.html">{{ obj.title }}</a></h2>
+										<p>{{ obj.overview }}</p>
 									</div>
 								</div>
 							</div>
+							{% endfor %}
 						</div>
+						<!--4-->
 						<div class="row row-pb-md">
+							{% for obj in row4 %}
 							<div class="col-md-6">
 								<div class="blog-entry">
 									<div class="blog-img">
-										<a href="blog.html"><img src="{% static 'images/blog-9.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
+										<a href="blog.html"><img src="{{ obj.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 									</div>
 									<div class="desc">
 										<p class="meta">
-											<span class="cat"><a href="#">Events</a></span>
-											<span class="date">20 March 2018</span>
-											<span class="pos">By <a href="#">Rich</a></span>
+											<span class="cat"><a href="#">{{ obj.categories }}</a></span>
+											<span class="date">{{ obj.timestamp }}</span>
+											<span class="pos">By <a href="#">{{ obj.author }}</a></span>
 										</p>
-										<h2><a href="blog.html">Recipe for your site</a></h2>
-										<p>A small river named Duden flows by their place and supplies it with the necessary </p>
+										<h2><a href="blog.html">{{ obj.title }}</a></h2>
+										<p>{{ obj.overview }}</p>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-6">
-								<div class="blog-entry">
-									<div class="blog-img">
-										<a href="blog.html"><img src="{% static 'images/blog-10.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
-									</div>
-									<div class="desc">
-										<p class="meta">
-											<span class="cat"><a href="#">Events</a></span>
-											<span class="date">20 March 2018</span>
-											<span class="pos">By <a href="#">Rich</a></span>
-										</p>
-										<h2><a href="blog.html">Recipe for your site</a></h2>
-										<p>A small river named Duden flows by their place and supplies it with the necessary </p>
-									</div>
-								</div>
-							</div>
+							{% endfor %}
 						</div>
+						<!--5-->
 						<div class="row row-pb-md">
+							{% for obj in row5 %}
 							<div class="col-md-6">
 								<div class="blog-entry">
 									<div class="blog-img">
-										<a href="blog.html"><img src="{% static 'images/blog-12.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
+										<a href="blog.html"><img src="{{ obj.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 									</div>
 									<div class="desc">
 										<p class="meta">
-											<span class="cat"><a href="#">Events</a></span>
-											<span class="date">20 March 2018</span>
-											<span class="pos">By <a href="#">Rich</a></span>
+											<span class="cat"><a href="#">{{ obj.categories }}</a></span>
+											<span class="date">{{ obj.timestamp }}</span>
+											<span class="pos">By <a href="#">{{ obj.author }}</a></span>
 										</p>
-										<h2><a href="blog.html">Recipe for your site</a></h2>
-										<p>A small river named Duden flows by their place and supplies it with the necessary </p>
+										<h2><a href="blog.html">{{ obj.title }}</a></h2>
+										<p>{{ obj.overview }}</p>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-6">
-								<div class="blog-entry">
-									<div class="blog-img">
-										<a href="blog.html"><img src="{% static 'images/blog-13.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
-									</div>
-									<div class="desc">
-										<p class="meta">
-											<span class="cat"><a href="#">Events</a></span>
-											<span class="date">20 March 2018</span>
-											<span class="pos">By <a href="#">Rich</a></span>
-										</p>
-										<h2><a href="blog.html">Recipe for your site</a></h2>
-										<p>A small river named Duden flows by their place and supplies it with the necessary </p>
-									</div>
-								</div>
-							</div>
+							{% endfor %}
 						</div>
+
 						<div class="row">
 							<div class="col-md-12 text-center">
 								<ul class="pagination">
@@ -217,30 +147,16 @@
 							</div>
 							<div class="side">
 								<h2 class="sidebar-heading">Recent Blog</h2>
+								{% for obj in recent %}
 								<div class="f-blog">
-									<a href="blog.html" class="blog-img" style="background-image: url({% static 'images/blog-1.jpg' %});">
+									<a href="blog.html" class="blog-img" style="background-image: url({{ obj.thumbnail.url }});">
 									</a>
 									<div class="desc">
-										<h3><a href="blog.html">Be a designer</a></h3>
-										<p class="admin"><span>25 March 2018</span></p>
+										<h3><a href="blog.html">{{ obj.title }}</a></h3>
+										<p class="admin"><span>{{ obj.overview }}</span></p>
 									</div>
 								</div>
-								<div class="f-blog">
-									<a href="blog.html" class="blog-img" style="background-image: url({% static 'images/blog-2.jpg' %});">
-									</a>
-									<div class="desc">
-										<h3><a href="blog.html">How to build website</a></h3>
-										<p class="admin"><span>24 March 2018</span></p>
-									</div>
-								</div>
-								<div class="f-blog">
-									<a href="blog.html" class="blog-img" style="background-image: url({% static 'images/blog-3.jpg' %});">
-									</a>
-									<div class="desc">
-										<h3><a href="blog.html">Create website</a></h3>
-										<p class="admin"><span>23 March 2018</span></p>
-									</div>
-								</div>
+								{% endfor %}
 							</div>
 							<div class="side">
 								<h2 class="sidebar-heading">Instagram</h2>
