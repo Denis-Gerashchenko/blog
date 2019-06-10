@@ -19,7 +19,7 @@
 											<span class="pos">By <a href="#">{{ obj.author }}</a></span>
 										</p>
 										<h2><a href="blog.html">{{ obj.title }}</a></h2>
-										<p>{{ obj.overview }}</p>
+										<p>{{ obj.summary }}</p>
 									</div>
 								</div>
 							</div>
@@ -40,7 +40,7 @@
 											<span class="pos">By <a href="#">{{ obj.author }}</a></span>
 										</p>
 										<h2><a href="blog.html">{{ obj.title }}</a></h2>
-										<p>{{ obj.overview }}</p>
+										<p>{{ obj.summary }}</p>
 									</div>
 								</div>
 							</div>
@@ -61,7 +61,7 @@
 											<span class="pos">By <a href="#">{{ obj.author }}</a></span>
 										</p>
 										<h2><a href="blog.html">{{ obj.title }}</a></h2>
-										<p>{{ obj.overview }}</p>
+										<p>{{ obj.summary }}</p>
 									</div>
 								</div>
 							</div>
@@ -82,7 +82,7 @@
 											<span class="pos">By <a href="#">{{ obj.author }}</a></span>
 										</p>
 										<h2><a href="blog.html">{{ obj.title }}</a></h2>
-										<p>{{ obj.overview }}</p>
+										<p>{{ obj.summary }}</p>
 									</div>
 								</div>
 							</div>
@@ -103,7 +103,7 @@
 											<span class="pos">By <a href="#">{{ obj.author }}</a></span>
 										</p>
 										<h2><a href="blog.html">{{ obj.title }}</a></h2>
-										<p>{{ obj.overview }}</p>
+										<p>{{ obj.summary }}</p>
 									</div>
 								</div>
 							</div>
@@ -153,7 +153,7 @@
 									</a>
 									<div class="desc">
 										<h3><a href="blog.html">{{ obj.title }}</a></h3>
-										<p class="admin"><span>{{ obj.overview }}</span></p>
+										<p class="admin"><span>{{ obj.summary }}</span></p>
 									</div>
 								</div>
 								{% endfor %}
@@ -181,9 +181,13 @@
 							</div>
 							<div class="side">
 								<div class="form-group">
-									<input type="text" class="form-control form-email text-center" id="email" placeholder="Enter your email">
+									<form action="." method="POST">
+									{% csrf_token %}
+									<input type="email" name="email" class="form-control form-email text-center" id="email" placeholder="Введите мыло">
 									<button type="submit" class="btn btn-primary btn-subscribe">Subscribe</button>
+									</form>
 								</div>
+
 							</div>
 						</div>
 					</div>
