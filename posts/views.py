@@ -19,7 +19,7 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
-def single(request):
+def single(request, id):
     recent = Post.objects.order_by('-timestamp')[0:3]
     context = {
         'recent': recent,
