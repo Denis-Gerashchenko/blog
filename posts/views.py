@@ -1,7 +1,23 @@
+from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from posts.models import Post
 from marketing.models import Signup
+
+
+def search(request):
+    post_list = Post.objects.all()
+    query = request.GET.get('q')
+    if query:
+        queryset = post_list.filter(
+            Q(title__icontains=query) |
+            Q(overview__icontains=query)
+            ).distinct()
+    context = {
+        'queryset': queryset,
+    }
+    return render(request, 'search_results.html', context)
+
 
 def index(request):
     queryset = Post.objects.filter(featured=True).order_by('-timestamp')[0:13]
@@ -21,6 +37,13 @@ def index(request):
 
 def single(request, id):
     recent = Post.objects.order_by('-timestamp')[0:3]
+
+    if request.method == 'POST':
+        email = request.POST.get('email', False)
+        new_signup = Signup()
+        new_signup.email = email
+        new_signup.save()
+
     context = {
         'recent': recent,
     }

@@ -43,7 +43,7 @@ body {
       content: ""; }
 
 a {
-  color: #F6490D;
+  color: #230d05;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s; }
@@ -190,7 +190,7 @@ h1, h2, h3, h4, h5, h6, figure {
         -moz-box-shadow: 0px 14px 20px -9px rgba(0, 0, 0, 0.75);
         box-shadow: 0px 14px 20px -9px rgba(0, 0, 0, 0.75); }
     .colorlib-nav ul li.active > a {
-      color: #F6490D !important;
+      color: #F6490D
       position: relative; }
       .colorlib-nav ul li.active > a:after {
         opacity: 1;

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+		<div id="colorlib-container">
+			<div class="container">
+                {% for obj in queryset %}
+                <h3><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h3>
+                {% endfor %}
+            </div>
+        </div>
+{% endblock content %}
