@@ -39,6 +39,20 @@ def index(request):
 def single(request, id):
     recent = Post.objects.order_by('-timestamp')[0:3]
     post = get_object_or_404(Post, id=id)
+    query = Post.objects.values('id').annotate()
+    list_of_id = [a_dict['id'] for a_dict in query]
+
+    if post.id != min(list_of_id):
+        previous_p = get_object_or_404(Post, id=str(int(id)-1))
+    else:
+        previous_p = False
+    if post.id != max(list_of_id):
+        next_p = get_object_or_404(Post, id=str(int(id) + 1))
+    else:
+        next_p = False
+
+
+
 
     if request.method == 'POST':
         email = request.POST.get('email', False)
@@ -49,6 +63,8 @@ def single(request, id):
     context = {
         'recent': recent,
         'post': post,
+        'previous': previous_p,
+        'next': next_p,
     }
     return render(request, 'single.html', context)
 

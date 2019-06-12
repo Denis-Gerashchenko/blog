@@ -21,6 +21,16 @@
 										<p>{{ post.overview}}</p>
 										{{ post.content | safe }}
 									</div>
+									{% if previous %}
+									<a class="btn btn-outline-success btn-lg" href="{{ previous.get_absolute_url }}" role="button">Previous</a>
+									{% else %}
+									<a class="btn btn-outline-success btn-lg disabled" role="button">Previous</a>
+									{% endif %}
+									{% if next %}
+									<a class="btn btn-outline-success btn-lg" href="{{ next.get_absolute_url }}" role="button">Next</a>
+								    {% else %}
+									<a class="btn btn-outline-success btn-lg disabled" role="button">Next</a>
+									{% endif %}
 								</div>
 							</div>
 						</div>
