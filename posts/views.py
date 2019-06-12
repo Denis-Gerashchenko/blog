@@ -1,6 +1,6 @@
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from posts.models import Post
 from marketing.models import Signup
 
@@ -35,8 +35,10 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+
 def single(request, id):
     recent = Post.objects.order_by('-timestamp')[0:3]
+    post = get_object_or_404(Post, id=id)
 
     if request.method == 'POST':
         email = request.POST.get('email', False)
@@ -46,8 +48,10 @@ def single(request, id):
 
     context = {
         'recent': recent,
+        'post': post,
     }
     return render(request, 'single.html', context)
+
 
 def blog(request):
     queryset = Post.objects.all()

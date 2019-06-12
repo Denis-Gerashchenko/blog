@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from tinymce import HTMLField
 
 # Create your models here.
 
@@ -25,6 +26,7 @@ class Post(models.Model):
     overview = models.TextField()
     summary = models.TextField(default="Сокращённый саммери чтобы посмотреть как посты отображаться будут")
     timestamp = models.DateTimeField(auto_now_add=True)
+    content = HTMLField(default="content")
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     thumbnail = models.ImageField()
     categories = models.CharField(max_length=100)
