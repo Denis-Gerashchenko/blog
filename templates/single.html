@@ -21,16 +21,20 @@
 										<p>{{ post.overview}}</p>
 										{{ post.content | safe }}
 									</div>
+									<div class="col-md-6">
 									{% if previous %}
 									<a class="btn btn-outline-success btn-lg" href="{{ previous.get_absolute_url }}" role="button">Previous</a>
 									{% else %}
 									<a class="btn btn-outline-success btn-lg disabled" role="button">Previous</a>
 									{% endif %}
+									</div>
+									<div class="col-md-6">
 									{% if next %}
 									<a class="btn btn-outline-success btn-lg" href="{{ next.get_absolute_url }}" role="button">Next</a>
 								    {% else %}
 									<a class="btn btn-outline-success btn-lg disabled" role="button">Next</a>
 									{% endif %}
+									</div>
 								</div>
 							</div>
 						</div>
@@ -81,37 +85,10 @@
 						<div class="row">
 							<div class="col-md-12">
 								<h2 class="heading-2">Say something</h2>
-								<form action="#">
-									<div class="row form-group">
-										<div class="col-md-6">
-											<!-- <label for="fname">First Name</label> -->
-											<input type="text" id="fname" class="form-control" placeholder="Your firstname">
-										</div>
-										<div class="col-md-6">
-											<!-- <label for="lname">Last Name</label> -->
-											<input type="text" id="lname" class="form-control" placeholder="Your lastname">
-										</div>
-									</div>
-
-									<div class="row form-group">
-										<div class="col-md-12">
-											<!-- <label for="email">Email</label> -->
-											<input type="text" id="email" class="form-control" placeholder="Your email address">
-										</div>
-									</div>
-
-									<div class="row form-group">
-										<div class="col-md-12">
-											<!-- <label for="subject">Subject</label> -->
-											<input type="text" id="subject" class="form-control" placeholder="Your subject of this message">
-										</div>
-									</div>
-
-									<div class="row form-group">
-										<div class="col-md-12">
-											<!-- <label for="message">Message</label> -->
-											<textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
-										</div>
+								<form action="." method="POST">
+									{% csrf_token %}
+									<div class="row form-group col-md-12">
+										{{ form }}
 									</div>
 									<div class="form-group">
 										<input type="submit" value="Post Comment" class="btn btn-primary">

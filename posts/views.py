@@ -2,6 +2,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
 from posts.models import Post
+from .forms import CommentForm
 from marketing.models import Signup
 
 
@@ -42,6 +43,12 @@ def single(request, id):
     query = Post.objects.values('id').annotate()
     list_of_id = [a_dict['id'] for a_dict in query]
 
+    form = CommentForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.instance.user = request.user
+            form.instance.post = post
+            form.save()
     if post.id != min(list_of_id):
         previous_p = get_object_or_404(Post, id=str(int(id)-1))
     else:
@@ -50,9 +57,6 @@ def single(request, id):
         next_p = get_object_or_404(Post, id=str(int(id) + 1))
     else:
         next_p = False
-
-
-
 
     if request.method == 'POST':
         email = request.POST.get('email', False)
@@ -65,6 +69,7 @@ def single(request, id):
         'post': post,
         'previous': previous_p,
         'next': next_p,
+        'form': form,
     }
     return render(request, 'single.html', context)
 
