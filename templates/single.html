@@ -40,48 +40,29 @@
 						</div>
 						<div class="row row-pb-lg">
 							<div class="col-md-12">
-								<h2 class="heading-2">23 Comments</h2>
+								<h2 class="heading-2">Post comments ({{ post.get_comments.count }})</h2>
+								{% for comment in post.get_comments %}
 								<div class="review">
-						   		<div class="user-img" style="background-image: url({% static 'images/person1.jpg' %})"></div>
+									{% if comment.user.author %}
+						   		<div class="user-img" style="background-image: url({{ comment.user.author.profile_picture.url }})"></div>
+									{% else %}
+								<div class="user-img" style="background-image: url({% static 'images/person1.jpg' %})"></div>
+									{% endif %}
 						   		<div class="desc">
 						   			<h4>
-						   				<span class="text-left">Jacob Webb</span>
-						   				<span class="text-right">24 March 2018</span>
+						   				<span class="text-left">{{ comment.user.username }}</span>
+						   				<span class="text-right">{{ comment.timestamp | timesince}} ago</span>
 						   			</h4>
-						   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+						   			<p>{{ comment.content }}</p>
 						   			<p class="star">
 					   					<span class="text-left"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
 						   			</p>
 						   		</div>
 						   	</div>
-						   	<div class="review">
-						   		<div class="user-img" style="background-image: url({% static 'images/person2.jpg' %})"></div>
-						   		<div class="desc">
-						   			<h4>
-						   				<span class="text-left">Jacob Webb</span>
-						   				<span class="text-right">24 March 2018</span>
-						   			</h4>
-						   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-						   			<p class="star">
-					   					<span class="text-left"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-						   			</p>
-						   		</div>
-						   	</div>
-						   	<div class="review">
-						   		<div class="user-img" style="background-image: url({% static 'images/person3.jpg' %})"></div>
-						   		<div class="desc">
-						   			<h4>
-						   				<span class="text-left">Jacob Webb</span>
-						   				<span class="text-right">24 March 2018</span>
-						   			</h4>
-						   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-						   			<p class="star">
-					   					<span class="text-left"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-						   			</p>
-						   		</div>
-						   	</div>
+								{% endfor %}
 							</div>
 						</div>
+						{% if request.user.is_authenticated %}
 						<div class="row">
 							<div class="col-md-12">
 								<h2 class="heading-2">Say something</h2>
@@ -96,6 +77,7 @@
 								</form>	
 							</div>
 						</div>
+						{% endif %}
 					</div>
 					<div class="col-md-3">
 						<div class="sidebar">
