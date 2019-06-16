@@ -136,74 +136,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-3">
-						<div class="sidebar">
-							<div class="side">
-								<div class="form-group">
-									<input type="text" class="form-control" id="search" placeholder="Enter any key to search...">
-									<button type="submit" class="btn btn-primary"><i class="icon-search3"></i></button>
-								</div>
-							</div>
-							<div class="side">
-								<h2 class="sidebar-heading">Categories</h2>
-								<p>
-									<ul class="category">
-										<li><a href="#"><i class="icon-check"></i> Home</a></li>
-										<li><a href="#"><i class="icon-check"></i> About Me</a></li>
-										<li><a href="#"><i class="icon-check"></i> Blog</a></li>
-										<li><a href="#"><i class="icon-check"></i> Travel</a></li>
-										<li><a href="#"><i class="icon-check"></i> Lifestyle</a></li>
-										<li><a href="#"><i class="icon-check"></i> Fashion</a></li>
-										<li><a href="#"><i class="icon-check"></i> Health</a></li>
-									</ul>
-								</p>
-							</div>
-							<div class="side">
-								<h2 class="sidebar-heading">Recent Blog</h2>
-								{% for obj in recent %}
-								<div class="f-blog">
-									<a href="{{ obj.get_absolute_url }}" class="blog-img" style="background-image: url({{ obj.thumbnail.url }});">
-									</a>
-									<div class="desc">
-										<h3><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h3>
-										<p class="admin"><span>{{ obj.summary }}</span></p>
-									</div>
-								</div>
-								{% endfor %}
-							</div>
-							<div class="side">
-								<h2 class="sidebar-heading">Instagram</h2>
-								<div class="instagram-entry">
-									<a href="#" class="instagram text-center" style="background-image: url({% static 'images/gallery-1.jpg' %});">
-									</a>
-									<a href="#" class="instagram text-center" style="background-image: url({% static 'images/gallery-2.jpg' %});">
-									</a>
-									<a href="#" class="instagram text-center" style="background-image: url({% static 'images/gallery-3.jpg' %});">
-									</a>
-									<a href="#" class="instagram text-center" style="background-image: url({% static 'images/gallery-4.jpg' %});">
-									</a>
-									<a href="#" class="instagram text-center" style="background-image: url({% static 'images/gallery-5.jpg' %});">
-									</a>
-									<a href="#" class="instagram text-center" style="background-image: url({% static 'images/gallery-6.jpg' %});">
-									</a>
-									<a href="#" class="instagram text-center" style="background-image: url({% static 'images/gallery-7.jpg' %});">
-									</a>
-									<a href="#" class="instagram text-center" style="background-image: url({% static 'images/gallery-8.jpg' %});">
-									</a>
-								</div>
-							</div>
-							<div class="side">
-								<div class="form-group">
-									<form action="." method="POST">
-									{% csrf_token %}
-									<input type="email" name="email" class="form-control form-email text-center" id="email" placeholder="Введите мыло">
-									<button type="submit" class="btn btn-primary btn-subscribe">Subscribe</button>
-									</form>
-								</div>
-
-							</div>
-						</div>
-					</div>
+					<!--sidebar-->
+					{% include "sidebar.html" with recent=recent %}
+					<!--end of the sidebar-->
 				</div>
 			</div>
 		</div>

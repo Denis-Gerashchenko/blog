@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
-{% load instagram_client %}
 		<div id="colorlib-container">
 			<div class="container">
 				<div class="row">
@@ -80,64 +79,9 @@
 						</div>
 						{% endif %}
 					</div>
-					<div class="col-md-3">
-						<div class="sidebar">
-							<div class="side">
-								<form action="{% url 'search' %}">
-								<div class="form-group">
-									<input type="text" name="q" class="form-control" id="search" placeholder="Enter something to search...">
-									<button type="submit" class="btn btn-primary"><i class="icon-search3"></i></button>
-								</div>
-								</form>
-							</div>
-							<div class="side">
-								<h2 class="sidebar-heading">Список</h2>
-								<p>
-									<ul class="category">
-										<li><a href="#"><i class="icon-check"></i> Home</a></li>
-										<li><a href="#"><i class="icon-check"></i> About Me</a></li>
-										<li><a href="#"><i class="icon-check"></i> Blog</a></li>
-										<li><a href="#"><i class="icon-check"></i> Travel</a></li>
-										<li><a href="#"><i class="icon-check"></i> Lifestyle</a></li>
-										<li><a href="#"><i class="icon-check"></i> Fashion</a></li>
-										<li><a href="#"><i class="icon-check"></i> Health</a></li>
-									</ul>
-								</p>
-							</div>
-							<div class="side">
-								<h2 class="sidebar-heading">Recent Blog</h2>
-								{% for obj in recent %}
-								<div class="f-blog">
-									<a href="{{ obj.get_absolute_url }}" class="blog-img" style="background-image: url({{ obj.thumbnail.url }});">
-									</a>
-									<div class="desc">
-										<h3><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h3>
-										<p class="admin"><span>{{ obj.summary }}</span></p>
-									</div>
-								</div>
-								{% endfor %}
-							</div>
-							<div class="side">
-								<h2 class="sidebar-heading">Instagram</h2>
-                                 <!--{% instagram_recent_media_wall username="nature" %}-->
-								{% instagram_user_recent_media nature %}
-								<div class="instagram-entry">
-								{% for media in recent_media %}
-								<a href="//instagram.com/p/{{ media.shortcode }}" class="instagram text-center" style="background-image: url({{ media.thumbnail_src }});">
-								{% endfor %}
-								</div>
-							</div>
-							<div class="side">
-								<div class="form-group">
-									<form action="." method="POST">
-									{% csrf_token %}
-									<input type="email" name="email" class="form-control form-email text-center" id="email" placeholder="Введите мыло">
-									<button type="submit" class="btn btn-primary btn-subscribe">Subscribe</button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
+					<!--sidebar-->
+					{% include "sidebar.html" with recent=recent %}
+					<!--end of sidebar-->
 				</div>
 			</div>
 		</div>
