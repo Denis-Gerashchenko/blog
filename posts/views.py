@@ -109,9 +109,5 @@ def blog(request):
     }
     return render(request, 'blog.html', context)
 
-# def recent(request):
-#     queryset = Post.objects.filter(featured=True).order_by('-timestamp')[0:3]
-#     context = {
-#         'recent': queryset,
-#     }
-#     return render(request, 'footer.html', context)
+def test(request):
+    return render(request, 'test.html', {})

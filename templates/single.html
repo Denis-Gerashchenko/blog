@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
+{% load instagram_client %}
 		<div id="colorlib-container">
 			<div class="container">
 				<div class="row">
@@ -118,24 +119,7 @@
 							</div>
 							<div class="side">
 								<h2 class="sidebar-heading">Instagram</h2>
-								<div class="instagram-entry">
-									<a href="#" class="instagram text-center" style="background-image: url({% static 'images/gallery-1.jpg' %});">
-									</a>
-									<a href="#" class="instagram text-center" style="background-image: url({% static 'images/gallery-2.jpg' %});">
-									</a>
-									<a href="#" class="instagram text-center" style="background-image: url({% static 'images/gallery-3.jpg' %});">
-									</a>
-									<a href="#" class="instagram text-center" style="background-image: url({% static 'images/gallery-4.jpg' %});">
-									</a>
-									<a href="#" class="instagram text-center" style="background-image: url({% static 'images/gallery-5.jpg' %});">
-									</a>
-									<a href="#" class="instagram text-center" style="background-image: url({% static 'images/gallery-6.jpg' %});">
-									</a>
-									<a href="#" class="instagram text-center" style="background-image: url({% static 'images/gallery-7.jpg' %});">
-									</a>
-									<a href="#" class="instagram text-center" style="background-image: url({% static 'images/gallery-8.jpg' %});">
-									</a>
-								</div>
+                                 {% instagram_recent_media_wall username="nature" %}
 							</div>
 							<div class="side">
 								<div class="form-group">

@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'posts',
     'marketing',
     'tinymce',
+    'sorl.thumbnail',
+    'django_instagram',
 ]
 
 MIDDLEWARE = [
