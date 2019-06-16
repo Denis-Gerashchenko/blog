@@ -119,7 +119,13 @@
 							</div>
 							<div class="side">
 								<h2 class="sidebar-heading">Instagram</h2>
-                                 {% instagram_recent_media_wall username="nature" %}
+                                 <!--{% instagram_recent_media_wall username="nature" %}-->
+								{% instagram_user_recent_media nature %}
+								<div class="instagram-entry">
+								{% for media in recent_media %}
+								<a href="//instagram.com/p/{{ media.shortcode }}" class="instagram text-center" style="background-image: url({{ media.thumbnail_src }});">
+								{% endfor %}
+								</div>
 							</div>
 							<div class="side">
 								<div class="form-group">
