@@ -18,14 +18,15 @@ message = args.Message
 password = args.Password
 login = 'Denis-Gerashchenko'
 
-encoded_login = bytes(login, 'utf-8')
-encoded_password = bytes(password, 'utf-8')
+# encoded_login = bytes(login, 'utf-8')
+# encoded_password = bytes(password, 'utf-8')
 
 subprocess.call(['git', 'add', '-A'])
 subprocess.call(['git', 'commit', '-m', f'{message}'])
-proc = subprocess.Popen(['git', 'push', '-u', 'origin', 'master'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-proc.communicate(encoded_login)[0]
-proc.communicate(encoded_password)[0]
+proc = subprocess.Popen(['git', 'push', '-u', 'origin', 'master'], stdin=subprocess.PIPE,stdout=subprocess.PIPE)
+proc.stdin.write(login)
+proc.stdin.write(password)
+
 
 
 
