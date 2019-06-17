@@ -1,5 +1,7 @@
 import subprocess
 import argparse
+import time
+import pexpect
 
 my_parser = argparse.ArgumentParser(prog='autopush', description='List the content of a folder')
 
@@ -18,16 +20,13 @@ message = args.Message
 password = args.Password
 login = 'Denis-Gerashchenko'
 
-encoded_login = bytes(login, 'utf-8')
-print(encoded_login)
-encoded_password = bytes(password, 'utf-8')
-print(encoded_password)
-
 subprocess.call(['git', 'add', '-A'])
 subprocess.call(['git', 'commit', '-m', f'{message}'])
-proc = subprocess.Popen(['git', 'push', '-u', 'origin', 'master'], stdin=subprocess.PIPE,stdout=subprocess.PIPE)
-proc.stdin.write(encoded_login)
-proc.stdin.write(encoded_password)
+dialog = pexpect.spawn('git push -u origin master')
+dialog.expect('''Username for 'https://github.com': ''')
+dialog.sendline(login)
+dialog.expect('''Password for 'https://Denis-Gerashchenko@github.com': ''')
+dialog.sendline(password)
 
 
 
