@@ -23,8 +23,9 @@ encoded_password = bytes(password, 'utf-8')
 
 subprocess.call(['git', 'add', '-A'])
 subprocess.call(['git', 'commit', '-m', f'{message}'])
-proc = subprocess.Popen(['git', 'push', '-u', 'origin', 'master'], stdin=subprocess.PIPE)
-proc.communicate(encoded_login)
-proc.communicate(encoded_password)
+proc = subprocess.Popen(['git', 'push', '-u', 'origin', 'master'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+proc.communicate(encoded_login)[0]
+proc.communicate(encoded_password)[0]
+
 
 
