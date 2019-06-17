@@ -16,10 +16,11 @@ my_parser.add_argument('Password',
 args = my_parser.parse_args()
 message = args.Message
 password = args.Password
+login = 'Denis-Gerashchenko'
 subprocess.call(['git', 'add', '-A'])
 subprocess.call(['git', 'commit', '-m', f'{message}'])
 proc = subprocess.Popen(['git', 'push', '-u', 'origin', 'master'], stdin=subprocess.PIPE)
-proc.communicate(f'Denis-Gerashchenko')
-proc.communicate(f'{password}')
+proc.communicate(f'{login:b}')
+proc.communicate(f'{password:b}')
 
 
