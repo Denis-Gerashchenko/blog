@@ -19,7 +19,9 @@ password = args.Password
 login = 'Denis-Gerashchenko'
 
 encoded_login = bytes(login, 'utf-8')
+print(encoded_login)
 encoded_password = bytes(password, 'utf-8')
+print(encoded_password)
 
 subprocess.call(['git', 'add', '-A'])
 subprocess.call(['git', 'commit', '-m', f'{message}'])
