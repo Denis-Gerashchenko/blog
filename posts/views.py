@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from posts.models import Post
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 from marketing.models import Signup
 
 
@@ -76,6 +76,26 @@ def single(request, id):
     }
     return render(request, 'single.html', context)
 
+def update(request, id):
+    return render(request, 'post-update.html', {})
+
+def delete(request, id):
+    return render(request, 'post-delete.html', {})
+
+def create(request):
+    form = PostForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('post-detail.html', kwargs={
+                'id': form.instance.id
+            }))
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'post-create.html', context)
 
 def blog(request):
     queryset = Post.objects.all()

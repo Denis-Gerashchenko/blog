@@ -31,7 +31,10 @@ INSTALLED_APPS = [
     'tinymce',
     'sorl.thumbnail',
     'django_instagram',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
