@@ -16,8 +16,8 @@
 											<span class="cat"><a href="#">{{ post.categories }}</a></span>
 											<span class="date">{{ post.timestamp }}</span>
 											<span class="pos">By <a href="#">{{ post.author }}</a></span>
-											<span class="date"><a href="{{ post.get_update_url}}">Update</a></span>
-											<span class="date"><a href="{{ post.get_delete_url }}">Delete</a></span>
+											<span class="date"><a href="{% url 'post-update' id=post.id %}">Update</a></span>
+											<span class="date"><a href="{% url 'post-delete' id=post.id %}">Delete</a></span>
 										</p>
 										<h2><a href="blog.html">{{ post.title }}</a></h2>
 										<p>{{ post.overview}}</p>

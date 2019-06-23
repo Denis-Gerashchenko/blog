@@ -97,8 +97,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 TINYMCE_DEFAULT_CONFIG = {
-    'height': 360,
-    'width': 1120,
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 20,
     'selector': 'textarea',

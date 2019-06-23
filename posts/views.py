@@ -1,10 +1,15 @@
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from posts.models import Post
+from posts.models import Post, Author
 from .forms import CommentForm, PostForm
 from marketing.models import Signup
 
+def get_author(user):
+    qs = Author.objects.filter(user=user)
+    if qs.exists():
+        return qs[0]
+    return None
 
 def search(request):
     post_list = Post.objects.all()
@@ -77,24 +82,47 @@ def single(request, id):
     return render(request, 'single.html', context)
 
 def update(request, id):
-    return render(request, 'post-update.html', {})
-
-def delete(request, id):
-    return render(request, 'post-delete.html', {})
-
-def create(request):
-    form = PostForm(request.POST or None)
+    title = 'Update'
+    post = get_object_or_404(Post, id=id)
+    form = PostForm(request.POST or None,
+                    request.FILES or None,
+                    instance=post)
+    author = get_author(request.user)
     if request.method == 'POST':
         if form.is_valid():
+            form.instance.author = author
             form.save()
-            return redirect(reverse('post-detail.html', kwargs={
+            return redirect(reverse('post-detail', kwargs={
+                'id': form.instance.id
+            }))
+
+    context = {
+        'title': title,
+        'form': form,
+    }
+    return render(request, 'post-create.html', context)
+
+def delete(request, id):
+    post = get_object_or_404(Post, id=id)
+    post.delete()
+    return redirect(reverse('post-list'))
+
+def create(request):
+    title = 'Create'
+    form = PostForm(request.POST or None, request.FILES or None)
+    author = get_author(request.user)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.instance.author = author
+            form.save()
+            return redirect(reverse('post-detail', kwargs={
                 'id': form.instance.id
             }))
 
     context = {
         'form': form,
+        'title': title,
     }
-
     return render(request, 'post-create.html', context)
 
 def blog(request):

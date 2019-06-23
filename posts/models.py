@@ -30,8 +30,8 @@ class Post(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     thumbnail = models.ImageField()
     categories = models.CharField(max_length=100)
-    featured = models.BooleanField()
-    main = models.BooleanField()
+    featured = models.BooleanField(null=True)
+    main = models.BooleanField(null=True)
 
     def __str__(self):
         return self.title

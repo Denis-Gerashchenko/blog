@@ -19,7 +19,7 @@ urlpatterns = [
     path('test/', test, name='test-zone'),
     path('single/<id>/update', update, name='post-update'),
     path('single/<id>/delete', delete, name='post-delete'),
-    path('single/create', create, name='post-create'),
+    path('create/', create, name='post-create'),
 
 
     path('admin/', admin.site.urls),
