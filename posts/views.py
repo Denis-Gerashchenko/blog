@@ -45,8 +45,27 @@ def index(request):
 def single(request, id):
     recent = Post.objects.order_by('-timestamp')[0:3]
     post = get_object_or_404(Post, id=id)
-    query = Post.objects.values('id').annotate()
-    list_of_id = [a_dict['id'] for a_dict in query]
+
+    #Pagination logic
+    previous_p = None
+    next_p = None
+    key = int(id)
+    #a queryset of posts with id anotated like this: <QuerySet [{'id': 1}, {'id': 2}, etc
+    query = Post.objects.order_by('timestamp').values('id').annotate()
+    listed_query = list(query)
+    #a position of a post in a whole timeline for pagination
+    index_of_post = [listed_query.index(post) for post in listed_query if post['id'] == key][0]
+    try:
+        previous_post_id = listed_query[index_of_post - 1]['id']
+    except IndexError:
+        previous_p = False
+    try:
+        next_post_id = listed_query[index_of_post + 1]['id']
+    except IndexError:
+        next_p = False
+    previous_p = get_object_or_404(Post, id=previous_post_id) if not previous_p is False else False
+    next_p = get_object_or_404(Post, id=next_post_id) if not next_p is False else False
+    #end of pagination logic
 
     form = CommentForm(request.POST or None)
     if request.method == 'POST':
@@ -57,14 +76,6 @@ def single(request, id):
             return redirect(reverse('post-detail', kwargs={
                 'id': post.id
             }))
-    if post.id != min(list_of_id):
-        previous_p = get_object_or_404(Post, id=str(int(id)-1))
-    else:
-        previous_p = False
-    if post.id != max(list_of_id):
-        next_p = get_object_or_404(Post, id=str(int(id) + 1))
-    else:
-        next_p = False
 
     if request.method == 'POST':
         email = request.POST.get('email', False)

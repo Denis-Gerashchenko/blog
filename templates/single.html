@@ -17,7 +17,9 @@
 											<span class="date">{{ post.timestamp }}</span>
 											<span class="pos">By <a href="#">{{ post.author }}</a></span>
 											<span class="date"><a href="{% url 'post-update' id=post.id %}">Update</a></span>
+											{% if user.is_staff %}
 											<span class="date"><a href="{% url 'post-delete' id=post.id %}">Delete</a></span>
+											{% endif %}
 										</p>
 										<h2><a href="blog.html">{{ post.title }}</a></h2>
 										<p>{{ post.overview}}</p>
