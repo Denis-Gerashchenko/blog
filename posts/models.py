@@ -32,12 +32,10 @@ class Post(models.Model):
     categories = models.CharField(max_length=100)
     featured = models.BooleanField(null=True)
     main = models.BooleanField(null=True)
+    viewcount = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
-
-    def get_id(self):
-        return self.id
 
     def get_update_url(self):
         return reverse('post-update', kwargs={
@@ -66,6 +64,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.user.username
+
 
 
 

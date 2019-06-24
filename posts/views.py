@@ -170,3 +170,4 @@ def blog(request):
 
 def test(request):
     return render(request, 'test.html', {})
+
