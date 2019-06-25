@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from posts.models import Post, Author
+from posts.models import Post, Author, PostViewCount
 from .forms import CommentForm, PostForm
 from marketing.models import Signup
 
@@ -66,6 +66,8 @@ def single(request, id):
     previous_p = get_object_or_404(Post, id=previous_post_id) if not previous_p is False else False
     next_p = get_object_or_404(Post, id=next_post_id) if not next_p is False else False
     #end of pagination logic
+
+    PostViewCount.objects.get_or_create(user=request.user, post=post)
 
     form = CommentForm(request.POST or None)
     if request.method == 'POST':

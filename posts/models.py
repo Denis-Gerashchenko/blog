@@ -20,6 +20,13 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+class PostViewCount(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey('Post', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
+
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
@@ -32,7 +39,7 @@ class Post(models.Model):
     categories = models.CharField(max_length=100)
     featured = models.BooleanField(null=True)
     main = models.BooleanField(null=True)
-    viewcount = models.IntegerField(default=0)
+    #viewcount = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -55,6 +62,10 @@ class Post(models.Model):
     @property
     def get_comments(self):
         return self.comments.all().order_by('-timestamp')
+
+    @property
+    def view_count(self):
+        return PostViewCount.objects.filter(post=self).count()
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
