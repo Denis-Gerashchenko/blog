@@ -67,7 +67,8 @@ def single(request, id):
     next_p = get_object_or_404(Post, id=next_post_id) if not next_p is False else False
     #end of pagination logic
 
-    PostViewCount.objects.get_or_create(user=request.user, post=post)
+    if request.user.is_authenticated:
+        PostViewCount.objects.get_or_create(user=request.user, post=post)
 
     form = CommentForm(request.POST or None)
     if request.method == 'POST':
