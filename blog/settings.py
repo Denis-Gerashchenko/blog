@@ -142,6 +142,8 @@ TINYMCE_DEFAULT_CONFIG = {
     'statusbar': True,
     }
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 

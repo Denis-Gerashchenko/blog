@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from posts.views import (
                            index, single, blog,
                            search, test, update,
-                           delete, create
+                           delete, create, profile,
                         )
 
 
@@ -21,6 +21,7 @@ urlpatterns = [
     path('single/<id>/delete', delete, name='post-delete'),
     path('create/', create, name='post-create'),
     path('accounts/', include('allauth.urls')),
+    path('accounts/profile/', profile, name='profile'),
 
 
     path('admin/', admin.site.urls),

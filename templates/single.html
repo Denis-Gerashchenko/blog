@@ -29,16 +29,16 @@
 									</div>
 									<div class="col-md-6">
 									{% if previous %}
-									<a class="btn btn-outline-success btn-lg" href="{{ previous.get_absolute_url }}" role="button">Previous</a>
+									<a style="border-radius:0px;" class="btn btn-primary btn-block" href="{{ previous.get_absolute_url }}" role="button">Previous</a>
 									{% else %}
-									<a class="btn btn-outline-success btn-lg disabled" role="button">Previous</a>
+									<a style="border-radius:0px;" class="btn btn-primary btn-block disabled" role="button">Previous</a>
 									{% endif %}
 									</div>
 									<div class="col-md-6">
 									{% if next %}
-									<a class="btn btn-outline-success btn-lg" href="{{ next.get_absolute_url }}" role="button">Next</a>
+									<a style="border-radius:0px;" class="btn btn-primary btn-block" href="{{ next.get_absolute_url }}" role="button">Next</a>
 								    {% else %}
-									<a class="btn btn-outline-success btn-lg disabled" role="button">Next</a>
+									<a style="border-radius:0px;" class="btn btn-primary btn-block disabled" role="button">Next</a>
 									{% endif %}
 									</div>
 								</div>
@@ -84,7 +84,7 @@
 							</div>
 						</div>
 						{% else %}
-                         <a href="{% url 'account_login' %}" class="btn btn-primary">Login to comment</a>
+                         <a href="{% url 'account_login' %}" style="border-radius:0px;" class="btn btn-primary">Login to comment</a>
 						{% endif %}
 					</div>
 					<!--sidebar-->

@@ -70,18 +70,19 @@
 								<li><a href="/single/1">Single</a></li>
 								<li><a href="/test">Test zone</a></li>
 								<li><a>Contact</a></li>
+								<li><a href="/accounts/profile">Profile</a></li>
 								{% if user.is_staff %}
 								<li><a href="/create">Create</a></li>
 							    {% endif %}
 								{% if user.is_authenticated %}
 								<li><form style="display:inline-block" method="post" action="{% url 'account_logout' %}">{% csrf_token %}
-								<button type="submit" class="btn btn-primary">{% trans 'Sign Out' %}</button>
+								<button type="submit" style="border-radius:0px;" class="btn btn-danger">{% trans 'Sign Out' %}</button>
 								</form></li>
 								<!--<li><a style="color:white;" href="{% url 'account_login' %}" class="btn btn-primary">Logout</a></li>-->
 								{% else %}
-								<li><a style="color:white;" href="{% url 'account_login' %}" class="btn btn-primary">Login</a></li>
+								<li><a style="color:white; border-radius:0px;" href="{% url 'account_login' %}" class="btn btn-primary">Login</a></li>
 								<!--<li><a style="color:white;" href="{% url 'account_login' %}" class="btn btn-primary">Login</a></li>-->
-								<li><a style="color:white;" href="{% url 'account_signup' %}" class="btn btn-primary">Sign Up</a></li>
+								<li><a style="color:white; border-radius:0px;" href="{% url 'account_signup' %}" class="btn btn-primary">Sign Up</a></li>
 								{% endif %}
 							</ul>
 						</div>

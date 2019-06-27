@@ -140,7 +140,7 @@ def create(request):
     return render(request, 'post-create.html', context)
 
 def blog(request):
-    queryset = Post.objects.all()
+    queryset = Post.objects.order_by('-timestamp')
     paginator = Paginator(queryset, 10)
     page_request_var = 'page'
     page = request.GET.get(page_request_var)
@@ -173,4 +173,7 @@ def blog(request):
 
 def test(request):
     return render(request, 'test.html', {})
+
+def profile(request):
+    return render(request, 'profile.html', {})
 
