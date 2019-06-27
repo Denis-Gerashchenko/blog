@@ -5,7 +5,7 @@
 		<aside id="colorlib-hero">
 			<div class="flexslider">
 				<ul class="slides">
-			   	<li style="background-image: url({% static 'images/img_bg_1.jpg' %});">
+			   	<li style="background-image: url({% static 'images/knight.jpg' %});">
 			   		<div class="overlay"></div>
 			   		<div class="container">
 			   			<div class="row">
@@ -24,7 +24,7 @@
 				   		</div>
 			   		</div>
 			   	</li>
-			   	<li style="background-image: url({% static 'images/img_bg_2.jpg' %});">
+			   	<li style="background-image: url({% static 'images/luiz.jpg' %});">
 			   		<div class="overlay"></div>
 			   		<div class="container">
 			   			<div class="row">
@@ -43,7 +43,7 @@
 				   		</div>
 			   		</div>
 			   	</li>
-			   	<li style="background-image: url({% static 'images/img_bg_3.jpg' %});">
+			   	<li style="background-image: url({% static 'images/piotr.jpg' %});">
 			   		<div class="overlay"></div>
 			   		<div class="container">
 			   			<div class="row">
@@ -62,7 +62,7 @@
 				   		</div>
 			   		</div>
 			   	</li>
-			   	<li style="background-image: url({% static 'images/img_bg_4.jpg' %});">
+			   	<li style="background-image: url({% static 'images/koukichi.jpg' %});">
 			   		<div class="overlay"></div>
 			   		<div class="container">
 			   			<div class="row">
@@ -92,7 +92,7 @@
 				<div class="col-md-4">
 						<div class="blog-entry">
 							<div class="blog-img">
-								<a href="blog.html"><img src="{{ obj.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
+								<a href="{{ obj.get_absolute_url }}"><img src="{{ obj.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
@@ -100,7 +100,7 @@
 									<span class="date">{{ obj.timestamp }}</span>
 									<span class="pos">By <a href="#">{{ obj.author }}</a></span>
 								</p>
-								<h2><a href="blog.html">{{ obj.title }}</a></h2>
+								<h2><a href="{{ obj.get_absolute_url }},">{{ obj.title }}</a></h2>
 								<p>{{ obj.summary }}</p>
 							</div>
 						</div>
@@ -112,7 +112,7 @@
 					<div class="col-md-4">
 						<div class="blog-entry">
 							<div class="blog-img">
-								<a href="blog.html"><img src="{{ obj.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
+								<a href="{{ obj.get_absolute_url }}"><img src="{{ obj.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
@@ -120,7 +120,7 @@
 									<span class="date">{{ obj.timestamp }}</span>
 									<span class="pos">By <a href="#">{{ obj.author }}</a></span>
 								</p>
-								<h2><a href="blog.html">{{ obj.title }}</a></h2>
+								<h2><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h2>
 								<p>{{ obj.summary }}</p>
 							</div>
 						</div>
@@ -132,7 +132,7 @@
 					<div class="col-md-8">
 						<div class="blog-entry">
 							<div class="blog-img">
-                                 <a href="blog.html"><img src="{{ row3_1.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
+                                 <a href="{{ obj.get_absolute_url }}"><img src="{{ row3_1.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
@@ -140,7 +140,7 @@
 									<span class="date">{{ row3_1.timestamp }}</span>
 									<span class="pos">By <a href="#">{{ row3_1.author }}</a></span>
 								</p>
-								<h2><a href="blog.html">{{ row3_1.title }}</a></h2>
+								<h2><a href="{{ obj.get_absolute_url }}">{{ row3_1.title }}</a></h2>
 								<p>{{ row3_1.summary }}</p>
 							</div>
 						</div>

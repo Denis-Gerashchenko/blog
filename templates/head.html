@@ -29,7 +29,9 @@
 	<!-- Icomoon Icon Fonts-->
 	<link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" media="all">
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
 
 	<!-- Magnific Popup -->
 	<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
@@ -78,10 +80,8 @@
 								<li><form style="display:inline-block" method="post" action="{% url 'account_logout' %}">{% csrf_token %}
 								<button type="submit" style="border-radius:0px;" class="btn btn-danger">{% trans 'Sign Out' %}</button>
 								</form></li>
-								<!--<li><a style="color:white;" href="{% url 'account_login' %}" class="btn btn-primary">Logout</a></li>-->
 								{% else %}
-								<li><a style="color:white; border-radius:0px;" href="{% url 'account_login' %}" class="btn btn-primary">Login</a></li>
-								<!--<li><a style="color:white;" href="{% url 'account_login' %}" class="btn btn-primary">Login</a></li>-->
+								<li><a style="color:#F6490D; border-radius:0px; background-color:#fff" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#F6490D'" href="{% url 'account_login' %}" class="btn btn-primary button1">Login</a></li>
 								<li><a style="color:white; border-radius:0px;" href="{% url 'account_signup' %}" class="btn btn-primary">Sign Up</a></li>
 								{% endif %}
 							</ul>
