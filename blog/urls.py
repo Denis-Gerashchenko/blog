@@ -20,6 +20,7 @@ urlpatterns = [
     path('single/<id>/update', update, name='post-update'),
     path('single/<id>/delete', delete, name='post-delete'),
     path('create/', create, name='post-create'),
+    path('update/', update, name='post-update'),
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/', profile, name='profile'),
 

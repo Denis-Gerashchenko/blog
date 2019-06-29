@@ -16,16 +16,16 @@
 											<span class="cat"><a href="#">{{ post.categories }}</a></span>
 											<span class="date">{{ post.timestamp }}</span>
 											<span class="pos">By <a href="#">{{ post.author }}</a></span>
-											<span class="date"><span class="glyphicon glyphicon-eye-open"></span>{{ post.get_comments.count }}</span>
-											<span class="date"><span class="glyphicon glyphicon-comment"></span> {{ post.view_count }}</span>
-											<span class="date"><a href="{% url 'post-update' id=post.id %}">Update</a></span>
+											<span class="date"><span class="glyphicon glyphicon-eye-open"></span>{{ post.view_count }}</span>
+											<span class="date"><span class="glyphicon glyphicon-comment"></span>{{ post.get_comments.count }}</span>
 											{% if user.is_staff %}
+											<span class="date"><a href="{% url 'post-update' id=post.id %}">Update</a></span>
 											<span class="date"><a href="{% url 'post-delete' id=post.id %}">Delete</a></span>
 											{% endif %}
 										</p>
 										<h2><a href="blog.html">{{ post.title }}</a></h2>
 										<p>{{ post.overview}}</p>
-										{{ post.content | safe }}
+										<p>{{ post.content | safe }}</p>
 									</div>
 									<div class="col-md-6">
 									{% if previous %}

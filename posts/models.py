@@ -67,6 +67,7 @@ class Post(models.Model):
     def view_count(self):
         return PostViewCount.objects.filter(post=self).count()
 
+
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)

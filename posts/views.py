@@ -96,33 +96,26 @@ def single(request, id):
     return render(request, 'single.html', context)
 
 def update(request, id):
-    title = 'Update'
     post = get_object_or_404(Post, id=id)
-    form = PostForm(request.POST or None,
+    updt = PostForm(request.POST or None,
                     request.FILES or None,
                     instance=post)
+
     author = get_author(request.user)
+
     if request.method == 'POST':
-        if form.is_valid():
-            form.instance.author = author
-            form.save()
+        if updt.is_valid():
+            updt.instance.author = author
+            updt.save()
             return redirect(reverse('post-detail', kwargs={
-                'id': form.instance.id
+                'id': updt.instance.id
             }))
-
     context = {
-        'title': title,
-        'form': form,
+        'updt': updt,
     }
-    return render(request, 'post-create.html', context)
-
-def delete(request, id):
-    post = get_object_or_404(Post, id=id)
-    post.delete()
-    return redirect(reverse('post-list'))
+    return render(request, 'post-update.html', context)
 
 def create(request):
-    title = 'Create'
     form = PostForm(request.POST or None, request.FILES or None)
     author = get_author(request.user)
     if request.method == 'POST':
@@ -135,9 +128,13 @@ def create(request):
 
     context = {
         'form': form,
-        'title': title,
     }
     return render(request, 'post-create.html', context)
+
+def delete(request, id):
+    post = get_object_or_404(Post, id=id)
+    post.delete()
+    return redirect(reverse('post-list'))
 
 def blog(request):
     queryset = Post.objects.order_by('-timestamp')
