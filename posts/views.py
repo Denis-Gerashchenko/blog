@@ -5,15 +5,18 @@ from posts.models import Post, Author, PostViewCount
 from .forms import CommentForm, PostForm
 from marketing.models import Signup
 
+
 def get_author(user):
     qs = Author.objects.filter(user=user)
     if qs.exists():
         return qs[0]
     return None
 
+
 def search(request):
     post_list = Post.objects.all()
     query = request.GET.get('q')
+    recent = Post.objects.order_by('-timestamp')[0:3]
     if query:
         queryset = post_list.filter(
             Q(title__icontains=query) |
@@ -21,6 +24,7 @@ def search(request):
             ).distinct()
     context = {
         'queryset': queryset,
+        'recent': recent,
     }
     return render(request, 'search_results.html', context)
 
@@ -87,15 +91,17 @@ def single(request, id):
         new_signup.save()
 
     context = {
-        'recent': recent,
         'post': post,
         'previous': previous_p,
         'next': next_p,
         'form': form,
+        'recent': recent,
     }
     return render(request, 'single.html', context)
 
+
 def update(request, id):
+    recent = Post.objects.order_by('-timestamp')[0:3]
     post = get_object_or_404(Post, id=id)
     updt = PostForm(request.POST or None,
                     request.FILES or None,
@@ -112,12 +118,15 @@ def update(request, id):
             }))
     context = {
         'updt': updt,
+        'recent': recent,
     }
     return render(request, 'post-update.html', context)
+
 
 def create(request):
     form = PostForm(request.POST or None, request.FILES or None)
     author = get_author(request.user)
+    recent = Post.objects.order_by('-timestamp')[0:3]
     if request.method == 'POST':
         if form.is_valid():
             form.instance.author = author
@@ -128,27 +137,29 @@ def create(request):
 
     context = {
         'form': form,
+        'recent': recent,
     }
     return render(request, 'post-create.html', context)
+
 
 def delete(request, id):
     post = get_object_or_404(Post, id=id)
     post.delete()
     return redirect(reverse('post-list'))
 
+
 def blog(request):
     queryset = Post.objects.order_by('-timestamp')
     paginator = Paginator(queryset, 10)
     page_request_var = 'page'
     page = request.GET.get(page_request_var)
+    recent = Post.objects.order_by('-timestamp')[0:3]
     try:
         paginated_queryset = paginator.page(page)
     except PageNotAnInteger:
         paginated_queryset = paginator.page(1)
     except EmptyPage:
         paginated_queryset = paginator.page(paginator.num_pages)
-
-    recent = Post.objects.order_by('-timestamp')[0:3]
 
     if request.method == 'POST':
         email = request.POST.get('email', False)
@@ -162,15 +173,26 @@ def blog(request):
         'row3': paginated_queryset[4:6],
         'row4': paginated_queryset[6:8],
         'row5': paginated_queryset[8:10],
-        'recent': recent,
         'queryset': paginated_queryset,
         'page_request_var': page_request_var,
+        'recent': recent,
     }
     return render(request, 'blog.html', context)
 
+
 def test(request):
-    return render(request, 'test.html', {})
+    recent = Post.objects.order_by('-timestamp')[0:3]
+    context = {
+        'recent': recent,
+    }
+    return render(request, 'test.html', context)
+
 
 def profile(request):
-    return render(request, 'profile.html', {})
+    recent = Post.objects.order_by('-timestamp')[0:3]
+    context = {
+        'recent': recent,
+    }
+    return render(request, 'profile.html', context)
+
 
