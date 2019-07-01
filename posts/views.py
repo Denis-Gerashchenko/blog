@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from posts.models import Post, Author, PostViewCount
+from posts.models import Post, Author, PostViewCount, UserProfile
 from .forms import CommentForm, PostForm
 from marketing.models import Signup
 
@@ -12,6 +12,11 @@ def get_author(user):
         return qs[0]
     return None
 
+def get_user_profile(user):
+    qs = UserProfile.objects.filter(user=user)
+    if qs.exists():
+        return qs[0]
+    return None
 
 def search(request):
     post_list = Post.objects.all()
@@ -190,6 +195,11 @@ def test(request):
 
 def profile(request):
     recent = Post.objects.order_by('-timestamp')[0:3]
+    prof = get_user_profile(request.user)
+    form = UserProfile(request.POST or None, request.FILES or None)
+    if not prof:
+        form.user_id = request.user.id
+        form.save()
     context = {
         'recent': recent,
     }
