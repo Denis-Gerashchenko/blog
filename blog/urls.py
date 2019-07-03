@@ -3,26 +3,28 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from posts.views import (
-                           index, single, blog,
-                           search, test, update,
+                           IndexView, single, BlogView,
+                           search, TestView, update,
                            delete, create, profile,
+                           UpdateProfileView,
                         )
 
 
 
 urlpatterns = [
-    path('', index),
+    path('', IndexView.as_view(), name='index'),
     path('single/<id>/', single, name='post-detail'),
-    path('blog/', blog, name='post-list'),
+    path('blog/', BlogView.as_view(), name='post-list'),
     path('search/', search, name='search'),
     path('tinymce/', include('tinymce.urls')),
-    path('test/', test, name='test-zone'),
+    path('test/', TestView.as_view(), name='test-zone'),
     path('single/<id>/update', update, name='post-update'),
     path('single/<id>/delete', delete, name='post-delete'),
     path('create/', create, name='post-create'),
     path('update/', update, name='post-update'),
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/', profile, name='profile'),
+    path('accounts/profile/update/', UpdateProfileView.as_view(), name='profile-update'),
 
 
     path('admin/', admin.site.urls),

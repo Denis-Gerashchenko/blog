@@ -72,7 +72,9 @@
 								<li><a href="/single/1">Single</a></li>
 								<li><a href="/test">Test zone</a></li>
 								<li><a>Contact</a></li>
+								{% if user.is_authenticated %}
 								<li><a href="/accounts/profile">Profile</a></li>
+								{% endif %}
 								{% if user.is_staff %}
 								<li><a href="/create">Create</a></li>
 							    {% endif %}

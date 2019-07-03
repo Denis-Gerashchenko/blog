@@ -7,6 +7,13 @@ from tinymce import HTMLField
 
 User = get_user_model()
 
+class PostView(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey('Post', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
+
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField()
@@ -14,11 +21,13 @@ class Author(models.Model):
     def __str__(self):
         return self.user.username
 
+
 class Category(models.Model):
     title = models.CharField(max_length=20)
 
     def __str__(self):
         return self.title
+
 
 class PostViewCount(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -46,17 +55,17 @@ class Post(models.Model):
 
     def get_update_url(self):
         return reverse('post-update', kwargs={
-            'id': self.id,
+            'id': self.id
         })
 
     def get_delete_url(self):
         return reverse('post-delete', kwargs={
-            'id': self.id,
+            'id': self.id
         })
 
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={
-            'id': self.id,
+            'id': self.id
         })
 
     @property
@@ -80,7 +89,7 @@ class Comment(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_picture = models.ImageField(null=True, blank=True)
+    profile_picture = models.ImageField()
     about = models.TextField(null=True, blank=True)
 
     def __str__(self):

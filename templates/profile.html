@@ -11,7 +11,7 @@
                           {% if user.author %}
                        <img alt="User Pic" src="{{ user.author.profile_picture.url }}" id="profile-image1" class="img-thumbnail">
                           {% else %}
-                       <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive">
+                       <img alt="User Pic" src="{{ profile.profile_picture.url }}" class="img-thumbnail">
                           {% endif %}
                       </div>
                       <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8" >
@@ -22,12 +22,14 @@
                               {% else %}
                             <p>     <b> Reader</b></p>
                               {% endif %}
+                              <a style="border-radius:0px;" href="{% url 'profile-update' %}" class="btn btn-default">Edit profile</a>
                           </div>
                            <hr>
-                          <ul class="container details" >
-                            <li><p><span class="glyphicon glyphicon-user one" style="width:50px;"></span>Awesome person</p></li>
-                            <li><p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>{{ user.email }}</p></li>
-                          </ul>
+                          <div class="col-sm-12">
+                          <b style="width:50px;">About:</b>
+                          <p>{{ profile.about }}</p>
+                          <p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>{{ user.email }}</p>
+                          </div>
                           <hr>
                           <div class="col-sm-5 col-xs-6 tital " >Date Of Joining: {{ user.date_joined | timesince }} ago</div>
                       </div>
