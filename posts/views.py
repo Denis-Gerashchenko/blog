@@ -3,7 +3,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views.generic import View, UpdateView
 
-from posts.models import Post, Author, PostViewCount, UserProfile, PostView
+from posts.models import Post, Author, PostViewCount, UserProfile, PostView, User
 from .forms import CommentForm, PostForm, ProfileForm
 from marketing.models import Signup
 
@@ -19,6 +19,13 @@ def get_user_profile(user):
     qs = UserProfile.objects.filter(user=user)
     if qs.exists():
         return qs[0]
+    return None
+
+
+def get_user_id(username):
+    qs = User.objects.filter(username=username)
+    if qs.exists():
+        return qs[0].id
     return None
 
 
@@ -219,21 +226,6 @@ def profile(request):
         'profile': prof,
     }
     return render(request, 'profile.html', context)
-
-# def update_profile_view(request):
-#     recent = Post.objects.order_by('-timestamp')[0:3]
-#     prof = get_user_profile(request.user)
-#     form = UserProfile(request.POST or None, request.FILES or None, instance=prof)
-#     if request.method == 'POST':
-#         if form.is_valid():
-#             form.instance.user_id = request.user.id
-#             form.save()
-#             return redirect(reverse('post-detail'))
-#     context = {
-#         'recent': recent,
-#         'form': form,
-#     }
-#     return render(request, 'profile-update.html', context)
 
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -457,21 +449,6 @@ def profile(request):
     }
     return render(request, 'profile.html', context)
 
-# def update_profile_view(request):
-#     recent = Post.objects.order_by('-timestamp')[0:3]
-#     prof = get_user_profile(request.user)
-#     form = UserProfile(request.POST or None, request.FILES or None, instance=prof)
-#     if request.method == 'POST':
-#         if form.is_valid():
-#             form.instance.user_id = request.user.id
-#             form.save()
-#             return redirect(reverse('post-detail'))
-#     context = {
-#         'recent': recent,
-#         'form': form,
-#     }
-#     return render(request, 'profile-update.html', context)
-
 
 class UpdateProfileView(UpdateView):
     template_name = 'profile-update.html'
@@ -493,4 +470,16 @@ class UpdateProfileView(UpdateView):
         form.save()
         return redirect(reverse('profile'))
 
+
+def another_user_view(request, username):
+    if request.user.username == username:
+        return redirect(reverse('profile'))
+    recent = Post.objects.order_by('-timestamp')[0:3]
+    user = get_object_or_404(UserProfile, user_id=get_user_id(username))
+
+    context = {
+        'recent': recent,
+        'person': user,
+    }
+    return render(request, 'another-user.html', context)
 

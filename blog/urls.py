@@ -6,7 +6,7 @@ from posts.views import (
                            IndexView, single, BlogView,
                            search, TestView, update,
                            delete, create, profile,
-                           UpdateProfileView,
+                           UpdateProfileView, another_user_view,
                         )
 
 
@@ -25,7 +25,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/', profile, name='profile'),
     path('accounts/profile/update/', UpdateProfileView.as_view(), name='profile-update'),
-
+    path('accounts/profile/<username>', another_user_view, name='another-user'),
 
     path('admin/', admin.site.urls),
 ]

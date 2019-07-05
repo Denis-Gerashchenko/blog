@@ -7,12 +7,14 @@ from tinymce import HTMLField
 
 User = get_user_model()
 
+
 class PostView(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user.username
+
 
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -77,23 +79,32 @@ class Post(models.Model):
         return PostViewCount.objects.filter(post=self).count()
 
 
-class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    timestamp = models.DateTimeField(auto_now_add=True)
-    content = models.TextField()
-    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.user.username
-
-
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField()
     about = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.user.username
+
+    def get_absolute_url(self):
+        return reverse('another-user', kwargs={
+            'username': self.user.username
+        })
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    content = models.TextField()
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
+    #profile = models.ForeignKey(UserProfile, related_name='profile', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
+
+
+
 
 
 

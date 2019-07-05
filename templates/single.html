@@ -15,7 +15,7 @@
 										<p class="meta">
 											<span class="cat"><a href="#">{{ post.categories }}</a></span>
 											<span class="date">{{ post.timestamp }}</span>
-											<span class="pos">By <a href="#">{{ post.author }}</a></span>
+											<span class="pos">By <a href="{% url 'another-user' username=post.author.user.username %}">{{ post.author }}</a></span>
 											<span class="date"><span class="glyphicon glyphicon-eye-open"></span>{{ post.view_count }}</span>
 											<span class="date"><span class="glyphicon glyphicon-comment"></span>{{ post.get_comments.count }}</span>
 											{% if user.is_staff %}
@@ -50,13 +50,13 @@
 								{% for comment in post.get_comments %}
 								<div class="review">
 									{% if comment.user.author %}
-						   		<div class="user-img" style="background-image: url({{ comment.user.author.profile_picture.url }})"></div>
+						   		<a href="{% url 'another-user' username=comment.user.username %}"><div class="user-img" style="background-image: url({{ comment.user.author.profile_picture.url }})"></div></a>
 									{% else %}
-								<div class="user-img" style="background-image: url({% static 'images/person1.jpg' %})"></div>
+								<a href="{% url 'another-user' username=comment.user.username %}"><div class="user-img" style="background-image: url({{ comment }})"></div></a>
 									{% endif %}
 						   		<div class="desc">
 						   			<h4>
-						   				<span class="text-left">{{ comment.user.username }}</span>
+						   				<a href="{% url 'another-user' username=comment.user.username %}"><span class="text-left">{{ comment.user.username }}</span></a>
 						   				<span class="text-right">{{ comment.timestamp | timesince}} ago</span>
 						   			</h4>
 						   			<p>{{ comment.content }}</p>

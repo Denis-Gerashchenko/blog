@@ -98,7 +98,7 @@
 								<p class="meta">
 									<span class="cat"><a href="#">{{ obj.categories }}</a></span>
 									<span class="date">{{ obj.timestamp }}</span>
-									<span class="pos">By <a href="#">{{ obj.author }}</a></span>
+									<span class="pos">By <a href="{% url 'another-user' username=obj.author.user.username %}">{{ obj.author }}</a></span>
 								</p>
 								<h2><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h2>
 								<p>{{ obj.summary }}</p>
@@ -118,7 +118,7 @@
 								<p class="meta">
 									<span class="cat"><a href="#">{{ obj.categories }}</a></span>
 									<span class="date">{{ obj.timestamp }}</span>
-									<span class="pos">By <a href="#">{{ obj.author }}</a></span>
+									<span class="pos">By <a href="{% url 'another-user' username=obj.author.user.username %}">{{ obj.author }}</a></span>
 								</p>
 								<h2><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h2>
 								<p>{{ obj.summary }}</p>
@@ -138,7 +138,7 @@
 								<p class="meta">
 									<span class="cat"><a href="#">{{ row3_1.category }}</a></span>
 									<span class="date">{{ row3_1.timestamp }}</span>
-									<span class="pos">By <a href="#">{{ row3_1.author }}</a></span>
+									<span class="pos">By <a href="{% url 'another-user' username=row3_1.author.user.username %}">{{ row3_1.author }}</a></span>
 								</p>
 								<h2><a href="{{ obj.get_absolute_url }}">{{ row3_1.title }}</a></h2>
 								<p>{{ row3_1.summary }}</p>
@@ -154,7 +154,7 @@
 								<p class="meta">
 									<span class="cat"><a href="#">{{ row3_2.categories }}</a></span>
 									<span class="date">{{ row3_2.timestamp }}</span>
-									<span class="pos">By <a href="#">{{ row3_2.author }}</a></span>
+									<span class="pos">By <a href="{% url 'another-user' username=row3_2.author.user.username %}">{{ row3_2.author }}</a></span>
 								</p>
 								<h2><a href="blog.html">{{ row3_2.title }}</a></h2>
 								<p>{{ row3_2.summary }}</p>
@@ -174,7 +174,7 @@
 								<p class="meta">
 									<span class="cat"><a href="#">{{ obj.categories }}</a></span>
 									<span class="date">{{ obj.timestamp }}</span>
-									<span class="pos">By <a href="#">{{ obj.author }}</a></span>
+									<span class="pos">By <a href="{% url 'another-user' username=obj.author.user.username %}">{{ obj.author }}</a></span>
 								</p>
 								<h2><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h2>
 								<p>{{ obj.summary }}</p>
@@ -193,7 +193,7 @@
 								<p class="meta">
 									<span class="cat"><a href="#">{{ row5_1.categories }}</a></span>
 									<span class="date">{{ row5_1.timestamp }}</span>
-									<span class="pos">By <a href="#">{{ row5_1.author }}</a></span>
+									<span class="pos">By <a href="{% url 'another-user' username=row5_1.author.user.username %}">{{ row5_1.author }}</a></span>
 								</p>
 								<h2><a href="{{ obj.get_absolute_url }}">{{ row5_1.title }}</a></h2>
 								<p>{{ row5_1.summary }}</p>
@@ -209,7 +209,7 @@
 								<p class="meta">
 									<span class="cat"><a href="#">{{ row5_2.category }}</a></span>
 									<span class="date">{{ row5_2.timestamp }}</span>
-									<span class="pos">By <a href="#">{{ row5_2.author }}</a></span>
+									<span class="pos">By <a href="{% url 'another-user' username=row5_2.author.user.username %}">{{ row5_2.author }}</a></span>
 								</p>
 								<h2><a href="{{ obj.get_absolute_url }}">{{ row5_2.title }}</a></h2>
 								<p>{{ row5_2.summary }} </p>
