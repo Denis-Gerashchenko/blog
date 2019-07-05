@@ -9,3 +9,23 @@
 Известные баги:
 1. Тайни мси виджет не запускается на апдейт
 
+
+<li style="background-image: url({{ slide0.thumbnail.url }});">
+			   		<div class="overlay"></div>
+			   		<div class="container">
+			   			<div class="row">
+				   			<div class="col-md-6 col-md-pull-3 col-sm-12 col-xs-12 col-md-offset-3 slider-text">
+				   				<div class="slider-text-inner">
+				   					<div class="desc">
+				   						<p class="meta">
+												<span class="cat"><a href="#">{{ slide0.categories }}</a></span>
+												<span class="date">{{ slide0.timestamp }}</span>
+												<span class="pos">By <a href="#">{{ slide0.author }}</a></span>
+											</p>
+					   					<h1>{{ slide0.overview }}</h1>
+				   					</div>
+				   				</div>
+				   			</div>
+				   		</div>
+			   		</div>
+			   	</li>

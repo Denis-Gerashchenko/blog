@@ -49,7 +49,7 @@ class Post(models.Model):
     thumbnail = models.ImageField()
     categories = models.CharField(max_length=100)
     featured = models.BooleanField(null=True)
-    main = models.BooleanField(null=True)
+    slide = models.BooleanField(null=True)
     #viewcount = models.IntegerField(default=0)
 
     def __str__(self):

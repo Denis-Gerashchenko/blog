@@ -51,6 +51,8 @@ class IndexView(View):
     def get(self, request, *args, **kwargs):
         queryset = Post.objects.filter(featured=True).order_by('-timestamp')[0:13]
         recent = Post.objects.order_by('-timestamp')[0:3]
+        slides = Post.objects.filter(slide=True).order_by('timestamp')[0:4]
+
         context = {
                 'row1': queryset[0:3],
                 'row2': queryset[3:6],
@@ -60,6 +62,7 @@ class IndexView(View):
                 'row5_1': queryset[11],
                 'row5_2': queryset[12],
                 'recent': recent,
+                'slides': slides,
         }
         return render(request, self.template_name, context)
 
@@ -265,25 +268,6 @@ def search(request):
         'recent': recent,
     }
     return render(request, 'search_results.html', context)
-
-
-class IndexView(View):
-    template_name = 'index.html'
-
-    def get(self, request, *args, **kwargs):
-        queryset = Post.objects.filter(featured=True).order_by('-timestamp')[0:13]
-        recent = Post.objects.order_by('-timestamp')[0:3]
-        context = {
-                'row1': queryset[0:3],
-                'row2': queryset[3:6],
-                'row3_1': queryset[6],
-                'row3_2': queryset[7],
-                'row4': queryset[8:11],
-                'row5_1': queryset[11],
-                'row5_2': queryset[12],
-                'recent': recent,
-        }
-        return render(request, self.template_name, context)
 
 
 def single(request, id):

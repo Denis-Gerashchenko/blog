@@ -5,7 +5,8 @@
 		<aside id="colorlib-hero">
 			<div class="flexslider">
 				<ul class="slides">
-			   	<li style="background-image: url({% static 'images/jaanus.jpg' %});">
+					{% for obj in slides %}
+			   	<li style="background-image: url({{ obj.thumbnail.url }});">
 			   		<div class="overlay"></div>
 			   		<div class="container">
 			   			<div class="row">
@@ -13,74 +14,18 @@
 				   				<div class="slider-text-inner">
 				   					<div class="desc">
 				   						<p class="meta">
-												<span class="cat"><a href="#">Events</a></span>
-												<span class="date">20 March 2018</span>
-												<span class="pos">By <a href="#">Rich</a></span>
+												<span class="cat"><a href="#">{{ obj.categories }}</a></span>
+												<span class="date">{{ obj.timestamp }}</span>
+												<span class="pos">By <a href="#">{{ obj.author }}</a></span>
 											</p>
-					   					<h1>How a website designer began customizing and designing</h1>
+					   					<h1>{{ obj.title }}</h1>
 				   					</div>
 				   				</div>
 				   			</div>
 				   		</div>
 			   		</div>
 			   	</li>
-			   	<li style="background-image: url({% static 'images/luiz.jpg' %});">
-			   		<div class="overlay"></div>
-			   		<div class="container">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-pull-3 col-sm-12 col-xs-12 col-md-offset-3 slider-text">
-				   				<div class="slider-text-inner">
-				   					<div class="desc">
-				   						<p class="meta">
-												<span class="cat"><a href="#">Events</a></span>
-												<span class="date">20 March 2018</span>
-												<span class="pos">By <a href="#">Rich</a></span>
-											</p>
-					   					<h1>How a website designer began customizing and designing</h1>
-				   					</div>
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>
-			   	<li style="background-image: url({% static 'images/piotr.jpg' %});">
-			   		<div class="overlay"></div>
-			   		<div class="container">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-pull-3 col-sm-12 col-xs-12 col-md-offset-3 slider-text">
-				   				<div class="slider-text-inner">
-				   					<div class="desc">
-				   						<p class="meta">
-												<span class="cat"><a href="#">Events</a></span>
-												<span class="date">20 March 2018</span>
-												<span class="pos">By <a href="#">Rich</a></span>
-											</p>
-					   					<h1>How a website designer began customizing and designing</h1>
-				   					</div>
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>
-			   	<li style="background-image: url({% static 'images/koukichi.jpg' %});">
-			   		<div class="overlay"></div>
-			   		<div class="container">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-pull-3 col-sm-12 col-xs-12 col-md-offset-3 slider-text">
-				   				<div class="slider-text-inner">
-				   					<div class="desc">
-				   						<p class="meta">
-												<span class="cat"><a href="#">Events</a></span>
-												<span class="date">20 March 2018</span>
-												<span class="pos">By <a href="#">Rich</a></span>
-											</p>
-					   					<h1>Top 5 Places To Start Your Vacation This Summer</h1>
-				   					</div>
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>
+					{% endfor %}
 			  	</ul>
 		  	</div>
 		</aside>
@@ -100,7 +45,7 @@
 									<span class="date">{{ obj.timestamp }}</span>
 									<span class="pos">By <a href="{% url 'another-user' username=obj.author.user.username %}">{{ obj.author }}</a></span>
 								</p>
-								<h2><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h2>
+								<h2><a href="{{ obj.get_absolute_url }}">{{ row0.title }}</a></h2>
 								<p>{{ obj.summary }}</p>
 							</div>
 						</div>

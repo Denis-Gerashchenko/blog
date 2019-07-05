@@ -2,7 +2,7 @@ astroid==2.2.5
 certifi==2019.3.9
 chardet==3.0.4
 defusedxml==0.6.0
-Django==2.1.9
+Django==2.1.10
 django-allauth==0.39.1
 django-crispy-forms==1.7.2
 django-instagram==0.3.0
