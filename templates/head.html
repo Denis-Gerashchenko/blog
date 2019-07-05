@@ -75,7 +75,7 @@
 								{% if user.is_authenticated %}
 								<li><a href="/accounts/profile">Profile</a></li>
 								{% endif %}
-								{% if user.is_staff %}
+								{% if user.author %}
 								<li><a href="/create">Create</a></li>
 							    {% endif %}
 								{% if user.is_authenticated %}

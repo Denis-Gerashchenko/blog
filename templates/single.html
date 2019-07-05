@@ -18,7 +18,7 @@
 											<span class="pos">By <a href="{% url 'another-user' username=post.author.user.username %}">{{ post.author }}</a></span>
 											<span class="date"><span class="glyphicon glyphicon-eye-open"></span>{{ post.view_count }}</span>
 											<span class="date"><span class="glyphicon glyphicon-comment"></span>{{ post.get_comments.count }}</span>
-											{% if user.is_staff %}
+											{% if user.author %}
 											<span class="date"><a href="{% url 'post-update' id=post.id %}">Update</a></span>
 											<span class="date"><a href="{% url 'post-delete' id=post.id %}">Delete</a></span>
 											{% endif %}
@@ -52,7 +52,7 @@
 									{% if comment.user.author %}
 						   		<a href="{% url 'another-user' username=comment.user.username %}"><div class="user-img" style="background-image: url({{ comment.user.author.profile_picture.url }})"></div></a>
 									{% else %}
-								<a href="{% url 'another-user' username=comment.user.username %}"><div class="user-img" style="background-image: url({{ comment }})"></div></a>
+								<a href="{% url 'another-user' username=comment.user.username %}"><div class="user-img" style="background-image: url({{ comment.user.userprofile.profile_picture.url }})"></div></a>
 									{% endif %}
 						   		<div class="desc">
 						   			<h4>

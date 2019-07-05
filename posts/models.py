@@ -80,7 +80,7 @@ class Post(models.Model):
 
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField()
     about = models.TextField(null=True, blank=True)
 
@@ -98,7 +98,6 @@ class Comment(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
-    #profile = models.ForeignKey(UserProfile, related_name='profile', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user.username
