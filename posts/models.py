@@ -98,11 +98,14 @@ class Comment(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
+    #parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
+
+    # class Meta:
+    #     # sort comments in chronological order by default
+    #     ordering = ('created',)
 
     def __str__(self):
-        return self.user.username
-
-
+        return f'Коммент с айди: {self.id}'
 
 
 

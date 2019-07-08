@@ -33,6 +33,19 @@ class CommentForm(forms.ModelForm):
         fields = ('content',)
 
 
+class TestForm(forms.ModelForm):
+    content = forms.CharField(widget=forms.Textarea(attrs={
+        'class': 'form-control',
+        'placeholder': 'Type your comment',
+        'id': 'usercomment',
+        'rows': '4'
+    }))
+
+    class Meta:
+        model = Comment
+        fields = ('content', 'user', 'post')
+
+
 class ProfileForm(forms.ModelForm):
 
     class Meta:

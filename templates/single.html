@@ -56,12 +56,12 @@
 									{% endif %}
 						   		<div class="desc">
 						   			<h4>
-						   				<a href="{% url 'another-user' username=comment.user.username %}"><span class="text-left">{{ comment.user.username }}</span></a>
+						   				<a href="{% url 'another-user' username=comment.user.username %}"><span class="text-left" name="username: {{comment.user.username}}">{{ comment.user.username }}</span></a>
 						   				<span class="text-right">{{ comment.timestamp | timesince}} ago</span>
 						   			</h4>
 						   			<p>{{ comment.content }}</p>
-						   			<p class="star">
-					   					<span class="text-left"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+									<p class="star">
+					   					<span class="text-left"><a href="#com" class="reply"><i class="icon-reply"></i></a></span>
 						   			</p>
 						   		</div>
 						   	</div>
@@ -71,11 +71,11 @@
 						{% if request.user.is_authenticated %}
 						<div class="row">
 							<div class="col-md-12">
-								<h2 class="heading-2">Say something</h2>
+								<h2 id="com" class="heading-2">Say something</h2>
 								<form action="." method="POST">
 									{% csrf_token %}
 									<div class="row form-group col-md-12">
-										{{ form }}
+										<span id="f1">{{ form }}</span>
 									</div>
 									<div class="form-group">
 										<input type="submit" value="Post Comment" style="border-radius:0px;" class="btn btn-primary">
