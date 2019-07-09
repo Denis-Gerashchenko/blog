@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views.generic import View, UpdateView
 
-from posts.models import Post, Author, PostViewCount, UserProfile, PostView, User
+from posts.models import Post, Author, PostViewCount, UserProfile, PostView, User, Comment
 from .forms import CommentForm, PostForm, ProfileForm, TestForm
 from marketing.models import Signup
 
@@ -99,8 +99,13 @@ def single(request, id):
     form = CommentForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
+            reply_id = request.POST.get('comment_id')
+            comment_qs = None
+            if reply_id:
+                comment_qs = Comment.objects.get(id=reply_id)
             form.instance.user = request.user
             form.instance.post = post
+            form.instance.reply = comment_qs
             form.save()
             return redirect(reverse('post-detail', kwargs={
                 'id': post.id
@@ -226,7 +231,6 @@ class TestView(View):
         # print(jjjjj)
         # return HttpResponse()
         return render(request, self.template_name, {})
-
 
 
 def profile(request):

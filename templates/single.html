@@ -46,8 +46,9 @@
 						</div>
 						<div class="row row-pb-lg">
 							<div class="col-md-12">
-								<h2 class="heading-2">Post comments ({{ post.get_comments.count }})</h2>
-								{% for comment in post.get_comments %}
+								<h2 class="heading-2">Post comments ({{ post.get_parent_comments.count }})</h2>
+								<!--Comment view-->
+								{% for comment in post.get_parent_comments %}
 								<div class="review">
 									{% if comment.user.author %}
 						   		<a href="{% url 'another-user' username=comment.user.username %}"><div class="user-img" style="background-image: url({{ comment.user.author.profile_picture.url }})"></div></a>
@@ -63,6 +64,36 @@
 									<p class="star">
 					   					<span class="text-left"><a href="#com" class="reply"><i class="icon-reply"></i></a></span>
 						   			</p>
+									<div class="col-md-12 mt-2" style="display:none">
+										{% for reply in comment.replies.all %}
+										<div class="review">
+									{% if reply.user.author %}
+						   		<a href="{% url 'another-user' username=comment.user.username %}"><div class="user-img" style="background-image: url({{ reply.user.author.profile_picture.url }})"></div></a>
+									{% else %}
+								<a href="{% url 'another-user' username=comment.user.username %}"><div class="user-img" style="background-image: url({{ reply.user.userprofile.profile_picture.url }})"></div></a>
+									{% endif %}
+						   		<div class="desc">
+						   			<h4>
+						   				<a href="{% url 'another-user' username=reply.user.username %}"><span class="text-left" name="username: {{repy.user.username}}">{{ reply.user.username }}</span></a>
+						   				<span class="text-right">{{ reply.timestamp | timesince}} ago</span>
+						   			</h4>
+						   			<p>{{ reply.content }}</p>
+								   </div>
+										</div>
+										{% endfor %}
+                                        <div class="form-group row">
+                                          <form action="." method="POST">
+									{% csrf_token %}
+									<input type="hidden" name="comment_id" value="{{ comment.id }}">
+									<div class="row form-group col-md-12">
+										<span>{{ form }}</span>
+									</div>
+									<div class="form-group">
+										<input type="submit" value="Post Comment" style="border-radius:0px;" class="btn btn-primary">
+									</div>
+								</form>
+                                        </div>
+									</div>
 						   		</div>
 						   	</div>
 								{% endfor %}
@@ -75,7 +106,7 @@
 								<form action="." method="POST">
 									{% csrf_token %}
 									<div class="row form-group col-md-12">
-										<span id="f1">{{ form }}</span>
+										<span>{{ form }}</span>
 									</div>
 									<div class="form-group">
 										<input type="submit" value="Post Comment" style="border-radius:0px;" class="btn btn-primary">
@@ -87,10 +118,10 @@
                          <a href="{% url 'account_login' %}" style="border-radius:0px;" class="btn btn-primary">Login to comment</a>
 						{% endif %}
 					</div>
-					<!--sidebar-->
+										<!--sidebar-->
 					{% include "sidebar.html" with recent=recent %}
 					<!--end of sidebar-->
 				</div>
-			</div>
+				</div>
 		</div>
 {% endblock content %}

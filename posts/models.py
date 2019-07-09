@@ -71,8 +71,8 @@ class Post(models.Model):
         })
 
     @property
-    def get_comments(self):
-        return self.comments.all().order_by('-timestamp')
+    def get_parent_comments(self):
+        return self.comments.filter(reply=None).order_by('-timestamp')
 
     @property
     def view_count(self):
@@ -98,7 +98,7 @@ class Comment(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
-    #parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
+    reply = models.ForeignKey('self', null=True, related_name='replies', on_delete=models.CASCADE)
 
     # class Meta:
     #     # sort comments in chronological order by default

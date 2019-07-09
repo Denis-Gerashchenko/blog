@@ -3,11 +3,22 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<script type="text/javascript">
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
          <div id="colorlib-container">
 			<div class="container">
                 <div class="col-sm-8">
                 <h2>Test</h2>
-                <div class="form-group">
+                    <button onclick="myFunction()">Click Me</button>
+                <div id="myDIV" style="display:none" class="form-group">
                     <form action="." method="POST">
                         {% csrf_token %}
 						<!--<input type="text" name="jjjjj" class="form-control text-center" id="jjjjj" placeholder="Введите jjjj">-->
