@@ -38,10 +38,11 @@ def search(request):
         queryset = post_list.filter(
             Q(title__icontains=query) |
             Q(overview__icontains=query)
-            ).distinct()
+        ).distinct()
     context = {
         'queryset': queryset,
         'recent': recent,
+        'query': query,
     }
     return render(request, 'search_results.html', context)
 
@@ -219,10 +220,12 @@ class TestView(View):
 
     def get(self, request, *args, **kwargs):
         recent = Post.objects.order_by('-timestamp')[0:3]
+        al = [0, 1, 2, 3, 4]
         form = TestForm
         context = {
             'recent': recent,
             'form': form,
+            'al': al,
         }
         return render(request, self.template_name, context)
 

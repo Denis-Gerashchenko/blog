@@ -4,9 +4,19 @@
 {% block content %}
 		<div id="colorlib-container">
 			<div class="container">
+                <h4>Search results "{{ query }}"</h4>
+                <p></p>
                 {% for obj in queryset %}
-                <h3><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h3>
+                <div class="review col-sm-4" style="border-bottom:none;">
+ <a href="{{ obj.get_absolute_url }}"><div class="user-img" style="background-image: url({{ obj.thumbnail.url }})"></div></a>
+<div class="desc">
+    <a href="{% url 'another-user' username=obj.author %}"><span class="text-left">{{ obj.author }}</span></a>
+    <span class="text-right">{{ obj.timestamp }}</span>
+    <p><a href="{{ obj.get_absolute_url }}">{{ obj.overview }}</a></p>
+</div>
+                </div>
                 {% endfor %}
             </div>
         </div>
 {% endblock content %}
+

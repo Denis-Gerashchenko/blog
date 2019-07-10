@@ -3,30 +3,13 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<script type="text/javascript">
-function myFunction() {
-  var x = document.getElementById("myDIV");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-</script>
-         <div id="colorlib-container">
-			<div class="container">
-                <div class="col-sm-8">
-                <h2>Test</h2>
-                    <button onclick="myFunction()">Click Me</button>
-                <div id="myDIV" style="display:none" class="form-group">
-                    <form action="." method="POST">
-                        {% csrf_token %}
-						<!--<input type="text" name="jjjjj" class="form-control text-center" id="jjjjj" placeholder="Введите jjjj">-->
-						<input type="hidden" name="jjjjj" value="Получилось">
-                        <button type="submit" class="btn btn-primary">Subscribe</button>
-                    </form>
-                </div>
-                </div>
-            </div>
-        </div>
+<div class="item">
+    <a class="thumb" href="/journal/lichnyj-opyt-blogera/">
+    <img src="/upload/cache/6a/4b/6a4be09ea7a6328b96d38f5acf866580.jpg" alt=""/></a>
+    <div class="txt">
+    <div class="meta">2 февраля 2017 года в 13:07</div>
+    <a class="title" href="/journal/lichnyj-opyt-blogera/">Почему блогинг — это лотерея? Личный опыт блогера, чей пост набрал более 60 000 просмотров за сутки</a>
+    <p>Виктория Васильченко, автор <a href="https://blogtori.wordpress.com/" target="_blank">блога Blogtori</a>, рассказала Hello blogger о том, как она развивает свою площадку и о том, какие посты интересны сегодняшней аудитории.</p>
+</div>
+</div>
 {% endblock content %}

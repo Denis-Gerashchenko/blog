@@ -92,7 +92,6 @@ class UserProfile(models.Model):
             'username': self.user.username
         })
 
-
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
