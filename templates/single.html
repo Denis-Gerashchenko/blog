@@ -29,7 +29,7 @@ function myFunction() {
 											<span class="date">{{ post.timestamp }}</span>
 											<span class="pos">By <a href="{% url 'another-user' username=post.author.user.username %}">{{ post.author }}</a></span>
 											<span class="date"><span class="glyphicon glyphicon-eye-open"></span>{{ post.view_count }}</span>
-											<span class="date"><span class="glyphicon glyphicon-comment"></span>{{ post.get_comments.count }}</span>
+											<span class="date"><span class="glyphicon glyphicon-comment"></span>{{ post.get_parent_comments.count }}</span>
 											{% if user.author %}
 											<span class="date"><a href="{% url 'post-update' id=post.id %}">Update</a></span>
 											<span class="date"><a href="{% url 'post-delete' id=post.id %}">Delete</a></span>
@@ -95,6 +95,7 @@ function myFunction() {
 								   </div>
 										</div>
 										{% endfor %}
+										{% if request.user.is_authenticated %}
                                         <div class="form-group row">
                                           <form action="." method="POST">
 									{% csrf_token %}
@@ -107,6 +108,7 @@ function myFunction() {
 									</div>
 								</form>
                                         </div>
+										{% endif %}
 									</div>
 						   		</div>
 						   	</div>

@@ -51,21 +51,25 @@ class IndexView(View):
     template_name = 'index.html'
 
     def get(self, request, *args, **kwargs):
-        queryset = Post.objects.filter(featured=True).order_by('-timestamp')[0:13]
+        # queryset = Post.objects.filter(featured=True).order_by('-timestamp')[0:13]
+        queryset = None
         recent = Post.objects.order_by('-timestamp')[0:3]
         slides = Post.objects.filter(slide=True).order_by('timestamp')[0:4]
 
-        context = {
-                'row1': queryset[0:3],
-                'row2': queryset[3:6],
-                'row3_1': queryset[6],
-                'row3_2': queryset[7],
-                'row4': queryset[8:11],
-                'row5_1': queryset[11],
-                'row5_2': queryset[12],
-                'recent': recent,
-                'slides': slides,
-        }
+        if queryset:
+            context = {
+                    'row1': queryset[0:3],
+                    'row2': queryset[3:6],
+                    'row3_1': queryset[6],
+                    'row3_2': queryset[7],
+                    'row4': queryset[8:11],
+                    'row5_1': queryset[11],
+                    'row5_2': queryset[12],
+                    'recent': recent,
+                    'slides': slides,
+            }
+        else:
+            context = {}
         return render(request, self.template_name, context)
 
 
@@ -82,9 +86,13 @@ def single(request, id):
     listed_query = list(query)
     # a position of a post in a whole timeline for pagination
     index_of_post = [listed_query.index(post) for post in listed_query if post['id'] == key][0]
-    try:
+    # try:
+    #     previous_post_id = listed_query[index_of_post - 1]['id']
+    # except IndexError:
+    #     previous_p = False
+    if not index_of_post == 0:
         previous_post_id = listed_query[index_of_post - 1]['id']
-    except IndexError:
+    else:
         previous_p = False
     try:
         next_post_id = listed_query[index_of_post + 1]['id']
@@ -156,9 +164,9 @@ def update(request, id):
 
 
 def create(request):
+    recent = Post.objects.order_by('-timestamp')[0:3]
     form = PostForm(request.POST or None, request.FILES or None)
     author = get_author(request.user)
-    recent = Post.objects.order_by('-timestamp')[0:3]
     if request.method == 'POST':
         if form.is_valid():
             form.instance.author = author

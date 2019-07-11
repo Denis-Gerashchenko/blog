@@ -6,13 +6,15 @@
 						<h2>Navigational</h2>
 						<p>
 							<ul class="colorlib-footer-links">
-								<li><a href="#"><i class="icon-check"></i> Home</a></li>
-								<li><a href="#"><i class="icon-check"></i> About Me</a></li>
-								<li><a href="#"><i class="icon-check"></i> Blog</a></li>
-								<li><a href="#"><i class="icon-check"></i> Travel</a></li>
-								<li><a href="#"><i class="icon-check"></i> Lifestyle</a></li>
-								<li><a href="#"><i class="icon-check"></i> Fashion</a></li>
-								<li><a href="#"><i class="icon-check"></i> Health</a></li>
+								<li><a href="/"><i class="icon-check"></i> Home</a></li>
+								<li><a href="/blog"><i class="icon-check"></i> Blog</a></li>
+								<li><a href="#"><i class="icon-check"></i> Contact</a></li>
+						{% if user.is_authentificated %}
+								<li><a href="/accounts/profile"><i class="icon-check"></i> Profile</a></li>
+						{% endif %}
+						{% if user.author %}
+								<li><a href="/create"><i class="icon-check"></i> Create</a></li>
+						{% endif %}
 							</ul>
 						</p>
 					</div>
