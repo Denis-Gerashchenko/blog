@@ -8,6 +8,9 @@ from posts.models import Post, Author, PostViewCount, UserProfile, PostView, Use
 from .forms import CommentForm, PostForm, ProfileForm, TestForm
 from marketing.models import Signup
 
+import string
+import itertools
+
 
 def get_author(user):
     qs = Author.objects.filter(user=user)
@@ -32,13 +35,24 @@ def get_user_id(username):
 
 def search(request):
     post_list = Post.objects.all()
-    query = request.GET.get('q')
     recent = Post.objects.order_by('-timestamp')[0:3]
+    query = request.GET.get('q')
     if query:
-        queryset = post_list.filter(
-            Q(title__icontains=query) |
-            Q(overview__icontains=query)
-        ).distinct()
+        i = query[0]
+        # This part needed because of the issues of sqlite db
+        # It's not possible to use __icontains for different characters instead of ascii
+        if not i.lower() in string.ascii_lowercase:
+            ch1 = Post.objects.filter(title__contains=query.capitalize())
+            ch2 = Post.objects.filter(title__contains=query.lower())
+            ch3 = Post.objects.filter(overview__contains=query.capitalize())
+            ch4 = Post.objects.filter(overview__contains=query.lower())
+            result_list = ch1 | ch2 | ch3 | ch4
+            queryset = result_list
+        else:
+            queryset = post_list.filter(
+                Q(title__icontains=query) |
+                Q(overview__icontains=query)
+            ).distinct()
     context = {
         'queryset': queryset,
         'recent': recent,
@@ -51,13 +65,13 @@ class IndexView(View):
     template_name = 'index.html'
 
     def get(self, request, *args, **kwargs):
-        # queryset = Post.objects.filter(featured=True).order_by('-timestamp')[0:13]
-        queryset = None
+        queryset = Post.objects.filter(featured=True).order_by('-timestamp')[0:13]
         recent = Post.objects.order_by('-timestamp')[0:3]
         slides = Post.objects.filter(slide=True).order_by('timestamp')[0:4]
 
         if queryset:
             context = {
+                    'queryset': queryset,
                     'row1': queryset[0:3],
                     'row2': queryset[3:6],
                     'row3_1': queryset[6],
@@ -193,26 +207,30 @@ class BlogView(View):
 
     def get(self, request, *args, **kwargs):
         queryset = Post.objects.order_by('-timestamp')
-        paginator = Paginator(queryset, 10)
-        page_request_var = 'page'
-        page = request.GET.get(page_request_var)
-        recent = Post.objects.order_by('-timestamp')[0:3]
-        try:
-            paginated_queryset = paginator.page(page)
-        except PageNotAnInteger:
-            paginated_queryset = paginator.page(1)
-        except EmptyPage:
-            paginated_queryset = paginator.page(paginator.num_pages)
-        context = {
-            'row1': paginated_queryset[0:2],
-            'row2': paginated_queryset[2:4],
-            'row3': paginated_queryset[4:6],
-            'row4': paginated_queryset[6:8],
-            'row5': paginated_queryset[8:10],
-            'queryset': paginated_queryset,
-            'page_request_var': page_request_var,
-            'recent': recent,
-        }
+        if queryset:
+            paginator = Paginator(queryset, 10)
+            page_request_var = 'page'
+            page = request.GET.get(page_request_var)
+            recent = Post.objects.order_by('-timestamp')[0:3]
+            try:
+                paginated_queryset = paginator.page(page)
+            except PageNotAnInteger:
+                paginated_queryset = paginator.page(1)
+            except EmptyPage:
+                paginated_queryset = paginator.page(paginator.num_pages)
+            context = {
+                'row1': paginated_queryset[0:2],
+                'row2': paginated_queryset[2:4],
+                'row3': paginated_queryset[4:6],
+                'row4': paginated_queryset[6:8],
+                'row5': paginated_queryset[8:10],
+                'queryset': paginated_queryset,
+                'page_request_var': page_request_var,
+                'recent': recent,
+                'queryset': queryset,
+            }
+        else:
+            context = {}
         return render(request, 'blog.html', context)
 
     def post(self, request, *args, **kwargs):

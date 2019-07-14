@@ -2,16 +2,16 @@
 {% block content %}
 {% load static %}
 <script type="text/javascript">
-function myFunction() {
-  {% for comment in post.get_parent_comments %}
-  var x{{ comment.id }} = document.getElementById("{{ comment.id }}");
-  if (x{{ comment.id }}.style.display === "none") {
-    x{{ comment.id }}.style.display = "block";
+{% for comment in post.get_parent_comments %}
+function myFunction{{ comment.id }}() {
+  var x = document.getElementById("{{ comment.id }}");
+  if (x.style.display === "none") {
+    x.style.display = "block";
   } else {
-    x{{ comment.id }}.style.display = "none";
+    x.style.display = "none";
   }
-  {% endfor %}
 }
+{% endfor %}
 </script>
 		<div id="colorlib-container">
 			<div class="container">
@@ -74,12 +74,12 @@ function myFunction() {
 						   			</h4>
 						   			<p>{{ comment.content }}</p>
 									<p class="star">
-					   					<span class="text-left"><a onclick="myFunction()" class="reply"><i class="icon-reply"></i></a></span>
+					   					<span class="text-left"><a onclick="myFunction{{ comment.id }}()" class="reply"><i class="icon-reply"></i></a></span>
 						   			</p>
 									<!--for hide-->
-									<div class="col-md-12 mt-2" id="{{ comment.id }}" style="display:none">
-										<!--for hide end-->
+									<div class="col-md-12 mt-2">
 										{% for reply in comment.replies.all %}
+										<!--reply-->
 										<div class="review" style="border-bottom:none;">
 									{% if reply.user.author %}
 						   		<a href="{% url 'another-user' username=comment.user.username %}"><div class="user-img" style="background-image: url({{ reply.user.author.profile_picture.url }})"></div></a>
@@ -94,9 +94,10 @@ function myFunction() {
 						   			<p>{{ reply.content }}</p>
 								   </div>
 										</div>
+										<!--end of reply-->
 										{% endfor %}
 										{% if request.user.is_authenticated %}
-                                        <div class="form-group row">
+                                        <div class="form-group row" id="{{ comment.id }}" style="display:none">
                                           <form action="." method="POST">
 									{% csrf_token %}
 									<input type="hidden" name="comment_id" value="{{ comment.id }}">
@@ -110,6 +111,7 @@ function myFunction() {
                                         </div>
 										{% endif %}
 									</div>
+									<!--for hide end-->
 						   		</div>
 						   	</div>
 								{% endfor %}
