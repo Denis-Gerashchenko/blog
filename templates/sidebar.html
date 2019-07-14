@@ -10,18 +10,12 @@
 								</form>
 							</div>
 							<div class="side">
-								<h2 class="sidebar-heading">Navigational</h2>
+								<h2 class="sidebar-heading">Categories</h2>
 								<p>
 							<ul class="colorlib-footer-links">
-								<li><a href="/"><i class="icon-check"></i> Home</a></li>
-								<li><a href="/blog"><i class="icon-check"></i> Blog</a></li>
-								<li><a href="#"><i class="icon-check"></i> Contact</a></li>
-						{% if user.is_authentificated %}
-								<li><a href="/accounts/profile"><i class="icon-check"></i> Profile</a></li>
-						{% endif %}
-						{% if user.author %}
-								<li><a href="/create"><i class="icon-check"></i> Create</a></li>
-						{% endif %}
+                            {% for cat in categories %}
+							<li><a href="{% url 'category-results' title=cat.title %}"><i class="icon-check"></i> {{ cat.title }}</a></li>
+							{% endfor %}
 							</ul>
 								</p>
 							</div>

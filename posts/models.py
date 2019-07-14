@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from tinymce import HTMLField
 
+
 # Create your models here.
 
 User = get_user_model()
@@ -27,8 +28,13 @@ class Author(models.Model):
 class Category(models.Model):
     title = models.CharField(max_length=20)
 
+    def get_posts(self):
+        return Post.objects.filter(category=self.title)
+
     def __str__(self):
         return self.title
+
+
 
 
 class PostViewCount(models.Model):
@@ -50,6 +56,7 @@ class Post(models.Model):
     categories = models.CharField(max_length=100)
     featured = models.BooleanField(null=True)
     slide = models.BooleanField(null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
     #viewcount = models.IntegerField(default=0)
 
     def __str__(self):
@@ -91,6 +98,7 @@ class UserProfile(models.Model):
         return reverse('another-user', kwargs={
             'username': self.user.username
         })
+
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

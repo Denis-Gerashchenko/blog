@@ -25,7 +25,7 @@ function myFunction{{ comment.id }}() {
 									</div>
 									<div class="desc">
 										<p class="meta">
-											<span class="cat"><a href="#">{{ post.categories }}</a></span>
+											<span class="cat"><a href="{% url 'category-results' title=post.category %}">{{ post.category }}</a></span>
 											<span class="date">{{ post.timestamp }}</span>
 											<span class="pos">By <a href="{% url 'another-user' username=post.author.user.username %}">{{ post.author }}</a></span>
 											<span class="date"><span class="glyphicon glyphicon-eye-open"></span>{{ post.view_count }}</span>

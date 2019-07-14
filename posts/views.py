@@ -4,12 +4,17 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views.generic import View, UpdateView
 
-from posts.models import Post, Author, PostViewCount, UserProfile, PostView, User, Comment
+from posts.models import Post, Author, PostViewCount, UserProfile, PostView, User, Comment, Category
 from .forms import CommentForm, PostForm, ProfileForm, TestForm
 from marketing.models import Signup
 
 import string
 import itertools
+
+
+def get_category(title):
+    cat = Category.objects.filter(title=title)
+    return cat[0].id
 
 
 def get_author(user):
@@ -61,6 +66,17 @@ def search(request):
     return render(request, 'search_results.html', context)
 
 
+def categories(request, title):
+    name = title
+    recent = Post.objects.order_by('-timestamp')[0:3]
+    queryset = Post.objects.filter(category_id=get_category(title))
+    context = {
+        'queryset': queryset,
+        'recent': recent,
+        'name': name,
+    }
+    return render(request, 'category-results.html', context)
+
 class IndexView(View):
     template_name = 'index.html'
 
@@ -90,6 +106,7 @@ class IndexView(View):
 def single(request, id):
     recent = Post.objects.order_by('-timestamp')[0:3]
     post = get_object_or_404(Post, id=id)
+    categories = Category.objects.all()
 
     # Next-previous post logic
     previous_p = None
@@ -150,6 +167,7 @@ def single(request, id):
         'next': next_p,
         'form': form,
         'recent': recent,
+        'categories': categories,
     }
     return render(request, 'single.html', context)
 
@@ -213,6 +231,7 @@ class BlogView(View):
     template_name = 'blog.html'
 
     def get(self, request, *args, **kwargs):
+        categories = Category.objects.all()
         queryset = Post.objects.order_by('-timestamp')
         if queryset:
             paginator = Paginator(queryset, 10)
@@ -235,6 +254,7 @@ class BlogView(View):
                 'page_request_var': page_request_var,
                 'recent': recent,
                 'queryset': queryset,
+                'categories': categories,
             }
         else:
             context = {}

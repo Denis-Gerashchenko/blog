@@ -7,10 +7,8 @@ from posts.views import (
                            search, TestView, update,
                            delete, create, profile,
                            UpdateProfileView, another_user_view,
-                           delete_comment,
+                           delete_comment, categories,
                         )
-
-
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
@@ -28,6 +26,7 @@ urlpatterns = [
     path('accounts/profile/', profile, name='profile'),
     path('accounts/profile/update/', UpdateProfileView.as_view(), name='profile-update'),
     path('accounts/profile/<username>', another_user_view, name='another-user'),
+    path('categories/<title>', categories, name='category-results'),
 
     path('admin/', admin.site.urls),
 ]

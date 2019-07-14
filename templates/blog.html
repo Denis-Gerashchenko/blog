@@ -14,7 +14,7 @@
 									</div>
 									<div class="desc">
 										<p class="meta">
-											<span class="cat"><a href="#">{{ obj.categories }}</a></span>
+											<span class="cat"><a href="{% url 'category-results' title=obj.category %}">{{ obj.category }}</a></span>
 											<span class="date">{{ obj.timestamp }}</span>
 											<span class="pos">By <a href="{% url 'another-user' username=obj.author.user.username %}">{{ obj.author }}</a></span>
 										</p>
@@ -35,7 +35,7 @@
 									</div>
 									<div class="desc">
 										<p class="meta">
-											<span class="cat"><a href="#">{{ obj.categories }}</a></span>
+											<span class="cat"><a href="{% url 'category-results' title=obj.category %}">{{ obj.category }}</a></span>
 											<span class="date">{{ obj.timestamp }}</span>
 											<span class="pos">By <a href="{% url 'another-user' username=obj.author.user.username %}">{{ obj.author }}</a></span>
 										</p>
@@ -56,7 +56,7 @@
 									</div>
 									<div class="desc">
 										<p class="meta">
-											<span class="cat"><a href="#">{{ obj.categories }}</a></span>
+											<span class="cat"><a href="{% url 'category-results' title=obj.category %}">{{ obj.category }}</a></span>
 											<span class="date">{{ obj.timestamp }}</span>
 											<span class="pos">By <a href="{% url 'another-user' username=obj.author.user.username %}">{{ obj.author }}</a></span>
 										</p>
@@ -77,7 +77,7 @@
 									</div>
 									<div class="desc">
 										<p class="meta">
-											<span class="cat"><a href="#">{{ obj.categories }}</a></span>
+											<span class="cat"><a href="{% url 'category-results' title=obj.category %}">{{ obj.category }}</a></span>
 											<span class="date">{{ obj.timestamp }}</span>
 											<span class="pos">By <a href="{% url 'another-user' username=obj.author.user.username %}">{{ obj.author }}</a></span>
 										</p>
@@ -98,7 +98,7 @@
 									</div>
 									<div class="desc">
 										<p class="meta">
-											<span class="cat"><a href="#">{{ obj.categories }}</a></span>
+											<span class="cat"><a href="{% url 'category-results' title=obj.category %}">{{ obj.category }}</a></span>
 											<span class="date">{{ obj.timestamp }}</span>
 											<span class="pos">By <a href="{% url 'another-user' username=obj.author.user.username %}">{{ obj.author }}</a></span>
 										</p>
