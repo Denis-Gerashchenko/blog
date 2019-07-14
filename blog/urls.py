@@ -7,6 +7,7 @@ from posts.views import (
                            search, TestView, update,
                            delete, create, profile,
                            UpdateProfileView, another_user_view,
+                           delete_comment,
                         )
 
 
@@ -20,6 +21,7 @@ urlpatterns = [
     path('test/', TestView.as_view(), name='test-zone'),
     path('single/<id>/update', update, name='post-update'),
     path('single/<id>/delete', delete, name='post-delete'),
+    path('comment/<id>/delete', delete_comment, name='comment-delete'),
     path('create/', create, name='post-create'),
     path('update/', update, name='post-update'),
     path('accounts/', include('allauth.urls')),
@@ -33,4 +35,3 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

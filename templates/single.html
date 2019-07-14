@@ -34,6 +34,7 @@ function myFunction{{ comment.id }}() {
 											<span class="date"><a href="{% url 'post-update' id=post.id %}">Update</a></span>
 											<span class="date"><a href="{% url 'post-delete' id=post.id %}">Delete</a></span>
 											{% endif %}
+											<span style="text-align:right;" class="glyphicon glyphicon-heart"></span>
 										</p>
 										<h2><a href="blog.html">{{ post.title }}</a></h2>
 										<p>{{ post.overview}}</p>
@@ -73,6 +74,9 @@ function myFunction{{ comment.id }}() {
 						   				<span class="text-right">{{ comment.timestamp | timesince}} ago</span>
 						   			</h4>
 						   			<p>{{ comment.content }}</p>
+									{% if user.is_staff or user.author %}
+									<span class="text-right"><small><a href="{% url 'comment-delete' id=comment.id %}">Delete</a></small></span>
+									{% endif %}
 									<p class="star">
 					   					<span class="text-left"><a onclick="myFunction{{ comment.id }}()" class="reply"><i class="icon-reply"></i></a></span>
 						   			</p>
@@ -92,6 +96,9 @@ function myFunction{{ comment.id }}() {
 						   				<span class="text-right">{{ reply.timestamp | timesince}} ago</span>
 						   			</h4>
 						   			<p>{{ reply.content }}</p>
+									{% if user.is_staff %}
+									<span class="text-right"><small><a href="{% url 'comment-delete' id=reply.id %}">Delete</a></small></span>
+									{% endif %}
 								   </div>
 										</div>
 										<!--end of reply-->
@@ -129,7 +136,7 @@ function myFunction{{ comment.id }}() {
 									<div class="form-group">
 										<input type="submit" value="Post Comment" style="border-radius:0px;" class="btn btn-primary">
 									</div>
-								</form>	
+								</form>
 							</div>
 						</div>
 						{% else %}

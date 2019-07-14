@@ -202,6 +202,13 @@ def delete(request, id):
     return redirect(reverse('post-list'))
 
 
+def delete_comment(request, id):
+    comment = get_object_or_404(Comment, id=id)
+    comment.delete()
+    return redirect(reverse('post-detail', kwargs={
+                'id': comment.post.id}))
+
+
 class BlogView(View):
     template_name = 'blog.html'
 
