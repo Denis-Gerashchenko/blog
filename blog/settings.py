@@ -100,7 +100,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'nblogDB',
+            'NAME': 'nblogdb',
             'USER': 'nblog_admin',
             'PASSWORD': 'tessa4755',
             'HOST': 'localhost',
