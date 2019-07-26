@@ -17,7 +17,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'overview', 'summary', 'content', 'thumbnail', 'categories', 'category')
+        fields = ('title', 'overview', 'summary', 'content', 'thumbnail', 'category')
 
 
 class CommentForm(forms.ModelForm):
@@ -31,19 +31,6 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('content',)
-
-
-class TestForm(forms.ModelForm):
-    content = forms.CharField(widget=forms.Textarea(attrs={
-        'class': 'form-control',
-        'placeholder': 'Type your comment',
-        'id': 'usercomment',
-        'rows': '4'
-    }))
-
-    class Meta:
-        model = Comment
-        fields = ('content', 'user', 'post')
 
 
 class ProfileForm(forms.ModelForm):

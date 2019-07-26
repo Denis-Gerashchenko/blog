@@ -29,14 +29,13 @@ function myFunction{{ comment.id }}() {
 											<span class="date">{{ post.timestamp }}</span>
 											<span class="pos">By <a href="{% url 'another-user' username=post.author.user.username %}">{{ post.author }}</a></span>
 											<span class="date"><span class="glyphicon glyphicon-eye-open"></span>{{ post.view_count }}</span>
-											<span class="date"><span class="glyphicon glyphicon-comment"></span>{{ post.get_parent_comments.count }}</span>
+											<span class="date"><span class="glyphicon glyphicon-comment"></span>{{ post.get_all_comments.count }}</span>
 											{% if user.author %}
 											<span class="date"><a href="{% url 'post-update' id=post.id %}">Update</a></span>
 											<span class="date"><a href="{% url 'post-delete' id=post.id %}">Delete</a></span>
 											{% endif %}
-											<span style="text-align:right;" class="glyphicon glyphicon-heart"></span>
 										</p>
-										<h2><a href="blog.html">{{ post.title }}</a></h2>
+										<h2>{{ post.title }}</h2>
 										<p>{{ post.overview}}</p>
 										<p>{{ post.content | safe }}</p>
 									</div>
@@ -127,7 +126,7 @@ function myFunction{{ comment.id }}() {
 						{% if request.user.is_authenticated %}
 						<div class="row">
 							<div class="col-md-12">
-								<h2 id="com" class="heading-2">Say something</h2>
+								<h2 id="com" class="heading-2">What do you think?</h2>
 								<form action="." method="POST">
 									{% csrf_token %}
 									<div class="row form-group col-md-12">

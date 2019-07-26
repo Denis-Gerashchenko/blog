@@ -17,8 +17,10 @@
                       <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8" >
                           <div class="container" >
                             <h2>{{ person.user.username }}</h2>
-                              {% if person.user.is_staff %}
-                            <p>an   <b> Author</b></p>
+                              {% if person.user.author %}
+                            <p>     <b> Author</b></p>
+                              {% elif person.user.is_staff %}
+                            <p>   <b> Moderator</b></p>
                               {% else %}
                             <p>     <b> Reader</b></p>
                               {% endif %}
@@ -27,7 +29,7 @@
                           <div class="col-sm-12">
                           <b style="width:50px;">About:</b>
                           <p>{{ person.about }}</p>
-                          <p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>{{ person.user.email }}</p>
+                          <p><span class="glyphicon glyphicon-envelope one" style="width:50px; color:LightCoral;"></span><a href="mailto:{{ person.user.email }}" style="color:LightCoral;">{{ person.user.email }}</a></p>
                           </div>
                           <hr>
                           <div class="col-sm-5 col-xs-6 tital " >Date Of Joining: {{ person.user.date_joined | timesince }} ago</div>

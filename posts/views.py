@@ -1,11 +1,10 @@
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views.generic import View, UpdateView
 
 from posts.models import Post, Author, PostViewCount, UserProfile, PostView, User, Comment, Category
-from .forms import CommentForm, PostForm, ProfileForm, TestForm
+from .forms import CommentForm, PostForm, ProfileForm
 from marketing.models import Signup
 
 import string
@@ -76,6 +75,7 @@ def categories(request, title):
         'name': name,
     }
     return render(request, 'category-results.html', context)
+
 
 class IndexView(View):
     template_name = 'index.html'
@@ -253,7 +253,6 @@ class BlogView(View):
                 'queryset': paginated_queryset,
                 'page_request_var': page_request_var,
                 'recent': recent,
-                'queryset': queryset,
                 'categories': categories,
             }
         else:
@@ -266,27 +265,6 @@ class BlogView(View):
         new_signup.email = email
         new_signup.save()
         return redirect('post-list')
-
-
-class TestView(View):
-    template_name = 'test.html'
-
-    def get(self, request, *args, **kwargs):
-        recent = Post.objects.order_by('-timestamp')[0:3]
-        al = [0, 1, 2, 3, 4]
-        form = TestForm
-        context = {
-            'recent': recent,
-            'form': form,
-            'al': al,
-        }
-        return render(request, self.template_name, context)
-
-    def post(self, request, *args, **kwargs):
-        # jjjjj = request.POST.get('jjjjj', False)
-        # print(jjjjj)
-        # return HttpResponse()
-        return render(request, self.template_name, {})
 
 
 def profile(request):
@@ -337,3 +315,11 @@ def another_user_view(request, username):
         'person': user,
     }
     return render(request, 'another-user.html', context)
+
+
+def contact_view(request):
+    recent = Post.objects.order_by('-timestamp')[0:3]
+    context = {
+        'recent': recent,
+    }
+    return render(request, 'contact.html', context)

@@ -4,7 +4,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from posts.views import (
                            IndexView, single, BlogView,
-                           search, TestView, update,
+                           search, update, contact_view,
                            delete, create, profile,
                            UpdateProfileView, another_user_view,
                            delete_comment, categories,
@@ -16,7 +16,6 @@ urlpatterns = [
     path('blog/', BlogView.as_view(), name='post-list'),
     path('search/', search, name='search'),
     path('tinymce/', include('tinymce.urls')),
-    path('test/', TestView.as_view(), name='test-zone'),
     path('single/<id>/update', update, name='post-update'),
     path('single/<id>/delete', delete, name='post-delete'),
     path('comment/<id>/delete', delete_comment, name='comment-delete'),
@@ -24,6 +23,7 @@ urlpatterns = [
     path('update/', update, name='post-update'),
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/', profile, name='profile'),
+    path('contact/', contact_view, name='contact'),
     path('accounts/profile/update/', UpdateProfileView.as_view(), name='profile-update'),
     path('accounts/profile/<username>', another_user_view, name='another-user'),
     path('categories/<title>', categories, name='category-results'),

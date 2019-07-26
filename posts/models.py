@@ -53,11 +53,9 @@ class Post(models.Model):
     content = HTMLField(default="content")
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     thumbnail = models.ImageField()
-    categories = models.CharField(max_length=100)
     featured = models.BooleanField(null=True)
     slide = models.BooleanField(null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
-    #viewcount = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -84,6 +82,10 @@ class Post(models.Model):
     @property
     def view_count(self):
         return PostViewCount.objects.filter(post=self).count()
+
+    @property
+    def get_all_comments(self):
+        return self.comments.order_by('-timestamp')
 
 
 class UserProfile(models.Model):

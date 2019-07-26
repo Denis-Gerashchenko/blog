@@ -18,7 +18,7 @@
 												<span class="date">{{ obj.timestamp }}</span>
 												<span class="pos">By <a href="#">{{ obj.author }}</a></span>
 											</p>
-					   					<h1>{{ obj.title }}</h1>
+					   					<a href="{{ obj.get_absolute_url }}"><h1>{{ obj.title }}</h1></a>
 				   					</div>
 				   				</div>
 				   			</div>
@@ -47,7 +47,7 @@
 									<span class="pos">By <a href="{% url 'another-user' username=obj.author.user.username %}">{{ obj.author }}</a></span>
 									{% endif %}
 								</p>
-								<h2><a href="{{ obj.get_absolute_url }}">{{ row0.title }}</a></h2>
+								<h2><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h2>
 								<p>{{ obj.overview }}</p>
 							</div>
 						</div>
@@ -81,7 +81,7 @@
 					<div class="col-md-8">
 						<div class="blog-entry">
 							<div class="blog-img">
-                                 <a href="{{ obj.get_absolute_url }}"><img src="{{ row3_1.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
+                                 <a href="{{ row3_1.get_absolute_url }}"><img src="{{ row3_1.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
@@ -99,7 +99,7 @@
 					<div class="col-md-4">
 						<div class="blog-entry">
 							<div class="blog-img">
-								<a href="blog.html"><img src="{{ row3_2.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
+								<a href="{{ row3_2.get_absolute_url }}"><img src="{{ row3_2.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
@@ -121,7 +121,7 @@
 					<div class="col-md-4">
 						<div class="blog-entry">
 							<div class="blog-img">
-								<a href="blog.html"><img src="{{ obj.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
+								<a href="{{ obj.get_absolute_url }}"><img src="{{ obj.thumbnail.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">

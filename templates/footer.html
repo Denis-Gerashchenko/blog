@@ -22,10 +22,10 @@
 						<h2>Recent Post</h2>
 						{% for obj in recent %}
 						<div class="f-blog">
-							<a href="blog.html" class="blog-img" style="background-image: url({{ obj.thumbnail.url }});">
+							<a href="{{ obj.get_absolute_url }}" class="blog-img" style="background-image: url({{ obj.thumbnail.url }});">
 							</a>
 							<div class="desc">
-								<h3><a href="blog.html">{{ obj.title }}</a></h3>
+								<h3><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h3>
 								<p class="admin"><span>{{ obj.timestamp }}</span></p>
 							</div>
 						</div>

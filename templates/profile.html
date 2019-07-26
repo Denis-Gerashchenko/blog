@@ -30,7 +30,7 @@
                           <div class="col-sm-12">
                           <b style="width:50px;">About:</b>
                           <p>{{ profile.about }}</p>
-                          <p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>{{ user.email }}</p>
+                              <p><span class="glyphicon glyphicon-envelope one" style="width:50px; color:LightCoral;"></span><a href="mailto:{{ user.email }}" style="color:LightCoral;">{{ user.email }}</a></p>
                           </div>
                           <hr>
                           <div class="col-sm-5 col-xs-6 tital " >Date Of Joining: {{ user.date_joined | timesince }} ago</div>
@@ -39,5 +39,4 @@
             </div>
             </div>
             </div>
-        </div>
 {% endblock content %}
