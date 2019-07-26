@@ -91,7 +91,7 @@ function myFunction{{ comment.id }}() {
 									{% endif %}
 						   		<div class="desc">
 						   			<h4>
-						   				<a href="{% url 'another-user' username=reply.user.username %}"><span class="text-left" name="username: {{repy.user.username}}">{{ reply.user.username }}</span></a>
+						   				<a href="{% url 'another-user' username=reply.user.username %}"><span class="text-left" name="username: {{ reply.user.username }}">{{ reply.user.username }}</span></a>
 						   				<span class="text-right">{{ reply.timestamp | timesince}} ago</span>
 						   			</h4>
 						   			<p>{{ reply.content }}</p>
