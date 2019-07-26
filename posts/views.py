@@ -323,3 +323,4 @@ def contact_view(request):
         'recent': recent,
     }
     return render(request, 'contact.html', context)
+
