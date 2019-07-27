@@ -244,7 +244,7 @@ class BlogView(View):
                 paginated_queryset = paginator.page(1)
             except EmptyPage:
                 paginated_queryset = paginator.page(paginator.num_pages)
-            a = paginated_queryset
+            a = paginated_queryset.has_other_pages
             context = {
                 'row1': paginated_queryset[0:2],
                 'row2': paginated_queryset[2:4],
