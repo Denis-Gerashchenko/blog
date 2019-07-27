@@ -244,7 +244,7 @@ class BlogView(View):
                 paginated_queryset = paginator.page(1)
             except EmptyPage:
                 paginated_queryset = paginator.page(paginator.num_pages)
-            print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$', paginated_queryset)
+            a = paginated_queryset
             context = {
                 'row1': paginated_queryset[0:2],
                 'row2': paginated_queryset[2:4],
@@ -255,6 +255,7 @@ class BlogView(View):
                 'page_request_var': page_request_var,
                 'recent': recent,
                 'categories': categories,
+                'a': a,
             }
         else:
             context = {}
