@@ -15,7 +15,7 @@ SECRET_KEY = '00'
 DEBUG = False
 
 # ALLOWED_HOSTS = ['207.154.253.241', '127.0.0.1']
-ALLOWED_HOSTS = [r'http://www.nblog.tech',]
+ALLOWED_HOSTS = ['nblog.tech',]
 
 # Application definition
 
