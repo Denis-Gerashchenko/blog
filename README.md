@@ -17,7 +17,7 @@ There are three roles:
 
 Author status should be given to custom user within django-admin
 
-For instagram panel on sidebar there is a block in index.html:38
+For instagram panel on sidebar there is a block in sidebar.html:38
 
 {% instagram_user_recent_media <nstagram userprofile id> %}
   
