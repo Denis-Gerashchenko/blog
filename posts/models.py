@@ -48,7 +48,7 @@ class PostViewCount(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     overview = models.TextField()
-    summary = models.TextField(default="Сокращённый саммери чтобы посмотреть как посты отображаться будут")
+    # summary = models.TextField(default="Сокращённый саммери чтобы посмотреть как посты отображаться будут")
     timestamp = models.DateTimeField(auto_now_add=True)
     content = HTMLField(default="content")
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
