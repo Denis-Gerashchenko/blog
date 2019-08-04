@@ -121,6 +121,8 @@ DATABASES = {
         }
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+FILE_UPLOAD_PERMISSIONS=0o640
+
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
