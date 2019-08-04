@@ -11,8 +11,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '00'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 # ALLOWED_HOSTS = ['207.154.253.241', '127.0.0.1']
 ALLOWED_HOSTS = ['nblog.tech',]
@@ -119,7 +119,6 @@ DATABASES = {
                 'PORT': '',
             }
         }
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 FILE_UPLOAD_PERMISSIONS=0o640
 
@@ -169,6 +168,11 @@ TINYMCE_DEFAULT_CONFIG = {
     }
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = 'gmail.com'
+EMAIL_HOST_USER = 'neonblog.sup@gmail.com'
+EMAIL_HOST_PASSWORD = 'neonblog.sup@gmail.com'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
