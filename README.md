@@ -22,3 +22,6 @@ For instagram panel on sidebar there is a block in sidebar.html:38
 {% instagram_user_recent_media <nstagram userprofile id> %}
   
 It uses "nature" by default
+
+Feature:
+TinyMCE editor can be used to create and update posts
