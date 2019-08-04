@@ -170,7 +170,9 @@ TINYMCE_DEFAULT_CONFIG = {
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_HOST = 'gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
 EMAIL_HOST_USER = 'neonblog.sup@gmail.com'
 EMAIL_HOST_PASSWORD = 'neonblog.sup@gmail.com'
 
