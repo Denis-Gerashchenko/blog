@@ -173,8 +173,8 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'neonblog.sup@gmail.com'
-EMAIL_HOST_PASSWORD = 'neonblog1100'
+EMAIL_HOST_USER = 'ytgfc'
+EMAIL_HOST_PASSWORD = '091hjk'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
