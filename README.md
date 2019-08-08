@@ -24,4 +24,4 @@ For instagram panel on sidebar there is a block in sidebar.html:38
 It uses "nature" by default
 
 Feature:
-TinyMCE editor can be used to create and update posts
+TinyMCE editor can be used to create and update posts.
