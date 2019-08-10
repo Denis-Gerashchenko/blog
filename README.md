@@ -2,7 +2,7 @@
 
 Blog created with Django
 
-May be used for any advertisment 
+May be used for any advertisment and be managed via admin site
 
 Posts with "Featured" checkbox turned on are placed on the main page.
 Posts with "Slider" checkbox turned on are placed on a slider
