@@ -1,27 +1,27 @@
 # blog
 
-Blog created with Django
+The blog created with the Django
 
-May be used for any advertisment and be managed via admin site
+It may be used for an any advertisment and be managed via the admin site
 
-Posts with "Featured" checkbox turned on are placed on the main page.
-Posts with "Slider" checkbox turned on are placed on a slider
+The posts with a "Featured" checkbox turned on are placed on a main page.
+The posts with a "Slider" checkbox turned on are placed on a slider
 
-Both checkboxes can be used on admin
+The both checkboxes can be used on the admin
 
-There are three roles:
+There are the three roles:
 
-- Author: can create and update posts
-- Moderator: can delete comments
-- Reader: can only write comments
+- Author: can create and update the posts
+- Moderator: can delete the comments
+- Reader: can only write the comments
 
-Author status should be given to custom user within django-admin
+An author status should be given to a custom user within the django-admin
 
-For instagram panel on sidebar there is a block in sidebar.html:38
+For a instagram panel on a sidebar there is a block in the page sidebar.html:38
 
 {% instagram_user_recent_media <nstagram userprofile id> %}
   
-It uses "nature" by default
+It uses the instagram profile "nature" by a default
 
 Feature:
-TinyMCE editor can be used to create and update posts.
+The TinyMCE editor can be used to create and update the posts.
