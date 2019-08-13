@@ -42,21 +42,10 @@ def search(request):
     recent = Post.objects.order_by('-timestamp')[0:3]
     query = request.GET.get('q')
     if query:
-        i = query[0]
-        # This part needed because of the issues of sqlite db
-        # It's not possible to use __icontains for different characters instead of ascii
-        if not i.lower() in string.ascii_lowercase:
-            ch1 = Post.objects.filter(title__contains=query.capitalize())
-            ch2 = Post.objects.filter(title__contains=query.lower())
-            ch3 = Post.objects.filter(overview__contains=query.capitalize())
-            ch4 = Post.objects.filter(overview__contains=query.lower())
-            result_list = ch1 | ch2 | ch3 | ch4
-            queryset = result_list
-        else:
-            queryset = post_list.filter(
-                Q(title__icontains=query) |
-                Q(overview__icontains=query)
-            ).distinct()
+        queryset = post_list.filter(
+            Q(title__icontains=query) |
+            Q(overview__icontains=query)
+        ).distinct()
     context = {
         'queryset': queryset,
         'recent': recent,
