@@ -2,18 +2,18 @@
 
 The blog created with the Django
 
-[![alt text](https://github.com/Denis-Gerashchenko/CV/blob/master/Screenshot_11.png "index")](https://nblog.tech/)
+[![alt text](https://github.com/Denis-Gerashchenko/blog/blob/master/Screenshot_11.png "index")](https://nblog.tech/)
 
 It may be used for an any advertisment and be managed via the admin site
 
-[![alt text](https://github.com/Denis-Gerashchenko/CV/blob/master/Screenshot_6.png "/admin")](https://nblog.tech/)
+[![alt text](https://github.com/Denis-Gerashchenko/blog/blob/master/Screenshot_6.png "/admin")](https://nblog.tech/)
 
 The posts with a "Featured" checkbox turned on are placed on a main page.
 The posts with a "Slider" checkbox turned on are placed on a slider
 
 The both checkboxes can be used on the admin
 
-[![alt text](https://github.com/Denis-Gerashchenko/CV/blob/master/Screenshot_7.png "/blog")](https://nblog.tech/)
+[![alt text](https://github.com/Denis-Gerashchenko/blog/blob/master/Screenshot_7.png "/blog")](https://nblog.tech/)
 
 There are the three roles:
 
@@ -33,4 +33,4 @@ Feature:
 
 The TinyMCE editor can be used to create and update the posts.
 
-[![alt text](https://github.com/Denis-Gerashchenko/CV/blob/master/Screenshot_12.png "/update")](https://nblog.tech/)
+[![alt text](https://github.com/Denis-Gerashchenko/blog/blob/master/Screenshot_12.png "/update")](https://nblog.tech/)
