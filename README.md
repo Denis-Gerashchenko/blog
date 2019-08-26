@@ -2,7 +2,7 @@
 
 The blog created with the Django
 
-[![alt text](https://github.com/Denis-Gerashchenko/blog/blob/master/Screenshot_11.png "index")](https://nblog.tech/)
+[![alt text](https://github.com/Denis-Gerashchenko/blog/blob/master/Screenshot_14.png "index")](https://nblog.tech/)
 
 It may be used for an any advertisment and be managed via the admin site
 
