@@ -6,7 +6,7 @@ The blog created with the Django
 
 It may be used for an any advertisment and be managed via the admin site
 
-[![alt text](https://github.com/Denis-Gerashchenko/blog/blob/master/Screenshot_6.png "/admin")](https://nblog.tech/)
+[![alt text](https://github.com/Denis-Gerashchenko/blog/blob/master/Screenshot_13.png "/admin")](https://nblog.tech/)
 
 The posts with a "Featured" checkbox turned on are placed on a main page.
 The posts with a "Slider" checkbox turned on are placed on a slider
