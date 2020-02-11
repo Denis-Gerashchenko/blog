@@ -1,6 +1,6 @@
 # blog
 
-The blog created with the Django
+The blog created with the Django.
 
 [![alt text](https://github.com/Denis-Gerashchenko/blog/blob/master/Screenshot_14.png "index")](https://nblog.tech/)
 
